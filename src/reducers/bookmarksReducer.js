@@ -2,11 +2,13 @@ const bookmarks = [
     {
         name: 'Blackboard PROD',
         url: 'https://www.google.com',
+        category: 'Blackboard',
         description: 'The production environment of Bocconis Blackboard learn instance.'
     },
     {
         name: 'Blackboard TEST',
         url: 'https://www.yahoo.com',
+        category: 'Blackboard',
         description: 'The testing environment of Bocconis Blackboard learn instance.'
     }
 ]
