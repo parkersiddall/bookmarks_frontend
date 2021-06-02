@@ -1,5 +1,5 @@
 import React from 'react'
-import useStyles from '../styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 // components
 import Card from '@material-ui/core/Card'
@@ -11,13 +11,23 @@ import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
 import Typography from '@material-ui/core/Typography'
 
+const useStyles = makeStyles(() => ({
+    customCard: {
+      borderLeft: '5px solid #cdcdcd',
+      transition: '.2s',
+      '&:hover': {
+        borderLeft: '5px solid #0c5299'
+      }
+    }
+  }))
+
 const BookmarkCard = ({ bookmark }) => {
 
     const classes = useStyles()
 
     return (
         <div>
-            <Card className={classes.customCard}>
+            <Card className={classes.customCard} square>
                 <CardActionArea component='a' href={bookmark.url} target='_blank'>
                     <CardContent>
                         <Typography variant='h6'>

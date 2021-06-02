@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import useStyles from './styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 // components
 import BookmarkCard from './components/BookmarkCard'
@@ -8,14 +8,18 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Navbar from './components/Navbar'
 
+const useStyles = makeStyles(() => ({
+  topMarginForNavbar: {
+    marginTop: '100px'
+  }
+}))
+
 function App() {
   const bookmarks = useSelector(store => store.bookmarks)
   const classes = useStyles()
 
-  console.log(classes)
-
   return (
-    <div style={{padding: '0px'}}>
+    <div>
       <Navbar />
       <Container className={classes.topMarginForNavbar}>
         <Grid container spacing={2}>
