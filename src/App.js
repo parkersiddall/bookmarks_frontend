@@ -1,12 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
+
+// reducers
+import { initializeFavorites } from './reducers/favoritesReducer'
 
 // components
 import BookmarkCard from './components/BookmarkCard'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Navbar from './components/Navbar'
+
 
 const useStyles = makeStyles(() => ({
   topMarginForNavbar: {
@@ -16,7 +20,16 @@ const useStyles = makeStyles(() => ({
 
 function App() {
   const bookmarks = useSelector(store => store.bookmarks)
+  const favorites = useSelector(store => store.favorites)
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(initializeFavorites())
+    // eslint-disable-next-line
+  }, [])
+
+  console.log(favorites)
 
   return (
     <div>
