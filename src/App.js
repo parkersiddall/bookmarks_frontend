@@ -7,9 +7,11 @@ import { initializeFavorites } from './reducers/favoritesReducer'
 
 // components
 import BookmarkCard from './components/BookmarkCard'
+import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Navbar from './components/Navbar'
+import Typography from '@material-ui/core/Typography'
 
 
 const useStyles = makeStyles(() => ({
@@ -29,12 +31,31 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
-  console.log(favorites)
-
   return (
     <div>
       <Navbar />
       <Container className={classes.topMarginForNavbar}>
+        <Box m={2}>
+          <Typography variant={'h5'}>
+            Favorites
+          </Typography>
+        </Box>
+        <Grid container spacing={2}>
+          {favorites.map(bookmark => 
+            <Grid key={bookmark.name} item xs={12} sm={4} md={3}>
+              <BookmarkCard
+                bookmark={bookmark}
+              />
+            </Grid>
+          )}
+        </Grid>
+      </Container>
+      <Container className={classes.topMarginForNavbar}>
+        <Box m={2}>
+          <Typography variant={'h5'}>
+            All
+          </Typography>
+        </Box>
         <Grid container spacing={2}>
           {bookmarks.map(bookmark => 
             <Grid key={bookmark.name} item xs={12} sm={4} md={3}>

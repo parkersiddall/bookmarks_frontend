@@ -1,4 +1,6 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { addFavorite, removeFavorite } from '../reducers/favoritesReducer'
 
 // components
 import FavoriteIcon from '@material-ui/icons/Favorite'
@@ -7,26 +9,26 @@ import IconButton from '@material-ui/core/IconButton'
 
 const FavoriteButton = ({ bookmark }) => {
 
-  console.log(bookmark)
-  const favorites = ['https://www.google.com'] //test for now, just to be sure the right icon is returned
+  const dispatch = useDispatch()
+  const favorites =  useSelector(state => state.favorites)
 
-  // add functions to handle clicks and save/remove favorites
+  // actions
   const handleAddFavorite = () => {
-    alert('Pinned to favorites')
+    dispatch(addFavorite(bookmark))
   }
 
   const handleRemoveFavorite = () => {
-    alert('Removed from favorites')
+    dispatch(removeFavorite(bookmark))
   }
 
-  if(favorites.includes(bookmark.url)){
+  if(favorites.includes(bookmark)){
     return (
       <div>
         <IconButton
           aria-label="remove favorite"
           onClick={handleRemoveFavorite}
         >
-            <FavoriteIcon color='primary' />
+          <FavoriteIcon color='primary' />
         </IconButton>
       </div>
     )
@@ -38,7 +40,7 @@ const FavoriteButton = ({ bookmark }) => {
         aria-label="add favorite"
         onClick={handleAddFavorite}
       >
-          <FavoriteBorderOutlinedIcon color='primary' />
+        <FavoriteBorderOutlinedIcon color='primary' />
       </IconButton>
     </div>
   )
