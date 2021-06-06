@@ -5,6 +5,7 @@ import clsx from 'clsx'
 
 // reducers
 import { changeDrawerStatus } from '../reducers/drawerReducer'
+import { setCategory } from '../reducers/categoryReducer'
 
 // components
 import Divider from '@material-ui/core/Divider'
@@ -38,9 +39,16 @@ const useStyles = makeStyles((theme) => ({
 
 const LeftDrawer = () => {
 
+  const bookmarks = useSelector(state => state.bookmarks)
   const drawerOpen = useSelector(state => state.drawer)
   const dispatch = useDispatch()
   const classes = useStyles()
+
+  // create a set with categories for drawer menu
+  const categories = new Set()
+  bookmarks.forEach(bookmark => {
+    categories.add(bookmark.category)
+  })
 
   return(
     <div>
@@ -66,19 +74,28 @@ const LeftDrawer = () => {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+          <ListItem
+            button
+            onClick={() => dispatch(setCategory('All'))}
+          >
+            <ListItemText primary={'All'} />
+          </ListItem>
+          {Array.from(categories).map((text, index) => (
+            <ListItem
+              button
+              key={text}
+              onClick={() => dispatch(setCategory(text))}
+            >
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button>
+            <ListItemText primary={'Clear favorites'} />
+          </ListItem>
+
         </List>
       </Drawer>
 

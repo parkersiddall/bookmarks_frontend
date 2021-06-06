@@ -20,7 +20,7 @@ const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   topMarginForNavbar: {
-    marginTop: '100px'
+    marginTop: '75px'
   },
   content: {
     flexGrow: 1,
@@ -44,6 +44,7 @@ function App() {
   const bookmarks = useSelector(store => store.bookmarks)
   const drawerOpen = useSelector(state => state.drawer)
   const favorites = useSelector(store => store.favorites)
+  const category = useSelector(store => store.category)
   const classes = useStyles()
   const dispatch = useDispatch()
 
@@ -52,6 +53,12 @@ function App() {
     dispatch(initializeBookmarks())
     // eslint-disable-next-line
   }, [])
+
+  console.log(category)
+
+  // filter bookmarks based on category
+  const filtered = category === 'All' ? bookmarks : bookmarks.filter(bookmark => bookmark.category === category)
+  console.log(filtered)
 
   return (
     <div>
@@ -81,11 +88,11 @@ function App() {
         <Container className={classes.topMarginForNavbar}>
           <Box m={2}>
             <Typography variant={'h5'}>
-              All
+              {category}
             </Typography>
           </Box>
           <Grid container spacing={2}>
-            {bookmarks.map(bookmark => 
+            {filtered.map(bookmark => 
               <Grid key={bookmark.name} item xs={12} sm={4} md={3}>
                 <BookmarkCard
                   bookmark={bookmark}
