@@ -11,6 +11,7 @@ const FavoriteButton = ({ bookmark }) => {
 
   const dispatch = useDispatch()
   const favorites =  useSelector(state => state.favorites)
+  let favUrls = favorites.map((fav) => fav.url)
 
   // actions
   const handleAddFavorite = () => {
@@ -21,7 +22,7 @@ const FavoriteButton = ({ bookmark }) => {
     dispatch(removeFavorite(bookmark))
   }
 
-  if(favorites.includes(bookmark)){
+  if(favUrls.includes(bookmark.url)){
     return (
       <div>
         <IconButton

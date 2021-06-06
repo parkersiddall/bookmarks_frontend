@@ -49,8 +49,21 @@ const bookmarks = [
     }
 ]
 
-const bookmarksReducer = (state = bookmarks, action) => {
+export const initializeBookmarks = () => {
+  return async dispatch => {
+    dispatch({
+      type: 'INIT_BOOKMARKS',
+      data: bookmarks
+    })
+  }
+}
+
+const bookmarksReducer = (state = [], action) => {
     switch (action.type) {  
+    
+    case 'INIT_BOOKMARKS':
+      return action.data
+      
     default:
       return state
     }

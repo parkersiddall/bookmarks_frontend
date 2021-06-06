@@ -3,8 +3,9 @@ export const initializeFavorites = () => {
     const favoritesInStorage = window.localStorage.getItem('favorites')
     if(favoritesInStorage){
       const favorites = JSON.parse(favoritesInStorage)
+      console.log(favorites)
       dispatch({
-        type: 'INIT',
+        type: 'INIT_FAVORITES',
         data: favorites
       })
     }
@@ -29,7 +30,7 @@ export const addFavorite = (favorite) => {
     }
 
     dispatch({
-      type: 'ADD',
+      type: 'ADD_FAVORITE',
       data: favorite
     })
   }
@@ -45,7 +46,7 @@ export const removeFavorite = (favorite) => {
     window.localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
 
     dispatch({
-      type: 'REMOVE',
+      type: 'REMOVE_FAVORITE',
       data: favorite
     })
   }
@@ -54,13 +55,13 @@ export const removeFavorite = (favorite) => {
 const favoritesReducer = (state = [], action) => {
   switch (action.type) { 
     
-  case 'INIT':
+  case 'INIT_FAVORITES':
     return action.data
 
-  case 'ADD':
+  case 'ADD_FAVORITE':
     return state.concat(action.data)
 
-  case 'REMOVE':
+  case 'REMOVE_FAVORITE':
     return state.filter(fav => fav.url !== action.data.url)
 
   default:
