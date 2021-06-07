@@ -8,19 +8,16 @@ import { initializeFavorites } from './reducers/favoritesReducer'
 import { initializeBookmarks } from './reducers/bookmarksReducer'
 
 // components
-import BookmarkCard from './components/BookmarkCard'
-import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
+import Bookmarks from './components/Bookmarks'
+import Favorites from './components/Favorites'
 import LeftDrawer from './components/LeftDrawer'
-import Grid from '@material-ui/core/Grid'
 import Navbar from './components/Navbar'
-import Typography from '@material-ui/core/Typography'
 
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   topMarginForNavbar: {
-    marginTop: '75px'
+    marginTop: '60px'
   },
   content: {
     flexGrow: 1,
@@ -41,10 +38,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function App() {
-  const bookmarks = useSelector(store => store.bookmarks)
+
   const drawerOpen = useSelector(state => state.drawer)
-  const favorites = useSelector(store => store.favorites)
-  const category = useSelector(store => store.category)
   const classes = useStyles()
   const dispatch = useDispatch()
 
@@ -54,53 +49,17 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
-  console.log(category)
-
-  // filter bookmarks based on category
-  const filtered = category === 'All' ? bookmarks : bookmarks.filter(bookmark => bookmark.category === category)
-  console.log(filtered)
-
   return (
     <div>
       <Navbar />
       <LeftDrawer />
       <main
-        className={clsx(classes.content, {
+        className={`${clsx(classes.content, {
           [classes.contentShift]: drawerOpen,
-        })}
+        })} ${classes.topMarginForNavbar}`}
       >
-        <Container className={classes.topMarginForNavbar}>
-          <Box m={2}>
-            <Typography variant={'h5'}>
-              Favorites
-            </Typography>
-          </Box>
-          <Grid container spacing={2}>
-            {favorites.map(bookmark => 
-              <Grid key={bookmark.name} item xs={12} sm={4} md={3}>
-                <BookmarkCard
-                  bookmark={bookmark}
-                />
-              </Grid>
-            )}
-          </Grid>
-        </Container>
-        <Container className={classes.topMarginForNavbar}>
-          <Box m={2}>
-            <Typography variant={'h5'}>
-              {category}
-            </Typography>
-          </Box>
-          <Grid container spacing={2}>
-            {filtered.map(bookmark => 
-              <Grid key={bookmark.name} item xs={12} sm={4} md={3}>
-                <BookmarkCard
-                  bookmark={bookmark}
-                />
-              </Grid>
-            )}
-          </Grid>
-        </Container>
+        <Favorites />
+        <Bookmarks />
       </main>
     </div>
   );

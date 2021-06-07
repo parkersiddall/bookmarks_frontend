@@ -95,10 +95,8 @@ const LeftDrawer = () => {
           <ListItem button>
             <ListItemText primary={'Clear favorites'} />
           </ListItem>
-
         </List>
       </Drawer>
-
     </div>
   )
 }
