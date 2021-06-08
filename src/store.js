@@ -4,13 +4,15 @@ import bookmarksReducer from './reducers/bookmarksReducer'
 import favoritesReducer from './reducers/favoritesReducer'
 import drawerReducer from './reducers/drawerReducer'
 import categoryReducer from './reducers/categoryReducer'
+import searchReducer from './reducers/searchReducer'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
     bookmarks: bookmarksReducer,
     favorites: favoritesReducer,
     drawer: drawerReducer,
-    category: categoryReducer
+    category: categoryReducer,
+    search: searchReducer
   })
   
   const store = createStore(

@@ -12,6 +12,7 @@ import Bookmarks from './components/Bookmarks'
 import Favorites from './components/Favorites'
 import LeftDrawer from './components/LeftDrawer'
 import Navbar from './components/Navbar'
+import SearchResults from './components/SearchResults'
 
 const drawerWidth = 240
 
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
 
   const drawerOpen = useSelector(state => state.drawer)
+  const searchTerm = useSelector(state => state.search)
   const classes = useStyles()
   const dispatch = useDispatch()
 
@@ -48,6 +50,8 @@ function App() {
     dispatch(initializeBookmarks())
     // eslint-disable-next-line
   }, [])
+
+
 
   return (
     <div>
@@ -58,8 +62,8 @@ function App() {
           [classes.contentShift]: drawerOpen,
         })} ${classes.topMarginForNavbar}`}
       >
-        <Favorites />
-        <Bookmarks />
+        { searchTerm && <SearchResults />}
+        { !searchTerm && <div><Favorites /><Bookmarks /></div> }
       </main>
     </div>
   );

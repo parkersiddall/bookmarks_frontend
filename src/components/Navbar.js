@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 // reducers
 import { changeDrawerStatus } from '../reducers/drawerReducer'
+import { setSearchFilter } from '../reducers/searchReducer'
 
 // components
 import AppBar from '@material-ui/core/AppBar'
@@ -121,6 +122,7 @@ const Navbar = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(event) => dispatch(setSearchFilter(event.target.value))}
             />
           </div>
         </Toolbar>
