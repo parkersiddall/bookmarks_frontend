@@ -51,8 +51,6 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
-
-
   return (
     <div>
       <Navbar />
@@ -66,7 +64,7 @@ function App() {
         { !searchTerm && <div><Favorites /><Bookmarks /></div> }
       </main>
     </div>
-  );
+  )
 }
 
 export default App;

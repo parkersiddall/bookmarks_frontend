@@ -6,6 +6,7 @@ import clsx from 'clsx'
 // reducers
 import { changeDrawerStatus } from '../reducers/drawerReducer'
 import { setCategory } from '../reducers/categoryReducer'
+import { clearFavorites } from '../reducers/favoritesReducer'
 
 // components
 import Divider from '@material-ui/core/Divider'
@@ -92,7 +93,10 @@ const LeftDrawer = () => {
         </List>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => dispatch(clearFavorites())}
+          >
             <ListItemText primary={'Clear favorites'} />
           </ListItem>
         </List>

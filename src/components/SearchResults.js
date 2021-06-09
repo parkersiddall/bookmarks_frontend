@@ -19,7 +19,7 @@ const SearchResults = () => {
   if(searchTerm.length === 0){
     return null
   } else {
-    filtered = bookmarks.filter(bookmark => bookmark.name.includes(searchTerm))
+    filtered = bookmarks.filter(bookmark => bookmark.name.toLowerCase().includes(searchTerm.toLowerCase()))
     console.log(filtered)
   }
 

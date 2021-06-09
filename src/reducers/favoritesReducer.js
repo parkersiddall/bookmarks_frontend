@@ -12,6 +12,16 @@ export const initializeFavorites = () => {
   }
 }
 
+export const clearFavorites = () => {
+  return async dispatch => {
+    window.localStorage.removeItem('favorites')
+    dispatch({
+      type: 'CLEAR_FAVORITES',
+      data: []
+    })
+  }
+}
+
 export const addFavorite = (favorite) => {
   return async dispatch => {
 
@@ -63,6 +73,9 @@ const favoritesReducer = (state = [], action) => {
 
   case 'REMOVE_FAVORITE':
     return state.filter(fav => fav.url !== action.data.url)
+
+  case 'CLEAR_FAVORITES':
+    return action.data
 
   default:
     return state
