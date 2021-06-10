@@ -1,6 +1,6 @@
 const bookmarks = [
     {
-      name: 'Bookmark 1',
+      name: 'zBookmark 1',
       url: 'https://www.bookmark1.com',
       category: 'Category 1',
       description: 'Lorem epsum 1.'
@@ -12,13 +12,13 @@ const bookmarks = [
       description: 'Lorem epsum 2.'
     },
     {
-      name: 'Bookmark 3',
+      name: 'aBookmark 3',
       url: 'https://www.bookmark3.com',
       category: 'Category 2',
       description: 'Lorem epsum 3.'
     },
     {
-      name: 'Bookmark 4',
+      name: 'ABookmark 4',
       url: 'https://www.bookmark4.com',
       category: 'Category 2',
       description: 'Lorem epsum 4.'
@@ -62,7 +62,7 @@ const bookmarksReducer = (state = [], action) => {
     switch (action.type) {  
     
     case 'INIT_BOOKMARKS':
-      return action.data
+      return action.data.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
       
     default:
       return state
