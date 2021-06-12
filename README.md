@@ -1,6 +1,6 @@
 # TODO
-- Colored icons for categories
 - Add more colors (currently 10) so that there can be more than 10 categories...
+- Alphabetically sort categories in drawer
 - Styling
 - Backend?
 
