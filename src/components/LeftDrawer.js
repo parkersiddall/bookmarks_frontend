@@ -9,12 +9,14 @@ import { setCategory } from '../reducers/categoryReducer'
 import { clearFavorites } from '../reducers/favoritesReducer'
 
 // components
+import BookmarkIcon from '@material-ui/icons/Bookmark'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 
 const drawerWidth = 240
@@ -39,17 +41,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 const LeftDrawer = () => {
-
-  const bookmarks = useSelector(state => state.bookmarks)
+  const categorization = useSelector(state => state.colorCategorization)
   const drawerOpen = useSelector(state => state.drawer)
   const dispatch = useDispatch()
   const classes = useStyles()
-
-  // create a set with categories for drawer menu
-  const categories = new Set()
-  bookmarks.forEach(bookmark => {
-    categories.add(bookmark.category)
-  })
 
   return(
     <div>
@@ -81,13 +76,18 @@ const LeftDrawer = () => {
           >
             <ListItemText primary={'All'} />
           </ListItem>
-          {Array.from(categories).map((text, index) => (
+          {Object.keys(categorization).map((category) => (
             <ListItem
               button
-              key={text}
-              onClick={() => dispatch(setCategory(text))}
+              key={category}
+              onClick={() => dispatch(setCategory(category))}
             >
-              <ListItemText primary={text} />
+              <ListItemIcon>
+                <BookmarkIcon
+                  style={{color: `${categorization[category]}`}}
+                />
+              </ListItemIcon>
+              <ListItemText primary={category}/>
             </ListItem>
           ))}
         </List>

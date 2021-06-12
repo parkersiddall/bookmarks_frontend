@@ -1,6 +1,6 @@
 # TODO
 - Colored icons for categories
-- Bookmarks in alphabetical order
+- Add more colors (currently 10) so that there can be more than 10 categories...
 - Styling
 - Backend?
 

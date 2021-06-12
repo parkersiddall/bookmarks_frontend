@@ -46,6 +46,12 @@ const bookmarks = [
       url: 'https://www.bookmark8.com',
       category: 'Category 4',
       description: 'Lorem epsum 8.'
+    },
+    {
+      name: 'Bookmark 9',
+      url: 'https://www.bookmark8.com',
+      category: 'Category 5',
+      description: 'Lorem epsum 8.'
     }
 ]
 

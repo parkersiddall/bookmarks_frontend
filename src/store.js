@@ -5,6 +5,7 @@ import favoritesReducer from './reducers/favoritesReducer'
 import drawerReducer from './reducers/drawerReducer'
 import categoryReducer from './reducers/categoryReducer'
 import searchReducer from './reducers/searchReducer'
+import colorCategorizationReducer from './reducers/colorCategorizationReducer'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     favorites: favoritesReducer,
     drawer: drawerReducer,
     category: categoryReducer,
-    search: searchReducer
+    search: searchReducer,
+    colorCategorization: colorCategorizationReducer
   })
   
   const store = createStore(
