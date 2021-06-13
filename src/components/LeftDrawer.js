@@ -10,6 +10,8 @@ import { clearFavorites } from '../reducers/favoritesReducer'
 
 // components
 import BookmarkIcon from '@material-ui/icons/Bookmark'
+import BookmarksIcon from '@material-ui/icons/Bookmarks'
+import DeleteIcon from '@material-ui/icons/Delete'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
@@ -25,6 +27,11 @@ const LeftDrawer = () => {
   const categorization = useSelector(state => state.colorCategorization)
   const drawerOpen = useSelector(state => state.drawer)
   const dispatch = useDispatch()
+
+  const categoriesAlphaOrdered = Object
+                                .keys(categorization)
+                                .sort((a, b) => 
+                                  a.toLowerCase() > b.toLowerCase() ? 1 : -1)
 
   return(
     <div>
@@ -54,9 +61,12 @@ const LeftDrawer = () => {
             button
             onClick={() => dispatch(setCategory('All'))}
           >
+              <ListItemIcon>
+                <BookmarksIcon />
+              </ListItemIcon>
             <ListItemText primary={'All'} />
           </ListItem>
-          {Object.keys(categorization).map((category) => (
+          {categoriesAlphaOrdered.map((category) => (
             <ListItem
               button
               key={category}
@@ -77,6 +87,9 @@ const LeftDrawer = () => {
             button
             onClick={() => dispatch(clearFavorites())}
           >
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
             <ListItemText primary={'Clear favorites'} />
           </ListItem>
         </List>
