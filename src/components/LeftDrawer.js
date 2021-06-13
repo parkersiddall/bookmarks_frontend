@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles'
+import useStyles from '../styles/LeftDrawer'
 import clsx from 'clsx'
 
 // reducers
@@ -19,32 +19,12 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 
-const drawerWidth = 240
-
-const useStyles = makeStyles((theme) => ({
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  }
-}))
-
-
 const LeftDrawer = () => {
+
+  const classes = useStyles()
   const categorization = useSelector(state => state.colorCategorization)
   const drawerOpen = useSelector(state => state.drawer)
   const dispatch = useDispatch()
-  const classes = useStyles()
 
   return(
     <div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles'
+import useStyles from './styles/App'
 import clsx from 'clsx'
 
 // reducers
@@ -15,35 +15,11 @@ import LeftDrawer from './components/LeftDrawer'
 import Navbar from './components/Navbar'
 import SearchResults from './components/SearchResults'
 
-const drawerWidth = 240
-
-const useStyles = makeStyles((theme) => ({
-  topMarginForNavbar: {
-    marginTop: '60px'
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: 0,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: drawerWidth,
-  }
-}))
-
 function App() {
 
+  const classes = useStyles()
   const drawerOpen = useSelector(state => state.drawer)
   const searchTerm = useSelector(state => state.search)
-  const classes = useStyles()
   const dispatch = useDispatch()
 
   useEffect(() => {
