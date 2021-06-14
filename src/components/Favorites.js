@@ -21,7 +21,7 @@ const Favorites = () => {
     <div>
       <Container>
           <Box m={2}>
-            <Typography variant={'h5'}>
+            <Typography variant={'h6'}>
               Favorites
             </Typography>
           </Box>

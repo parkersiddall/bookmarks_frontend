@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
+import useStyles from '../styles/Bookmarks'
 
 // components
 import BookmarkCard from '../components/BookmarkCard'
@@ -11,6 +12,7 @@ import Typography from '@material-ui/core/Typography'
 
 const Bookmarks = () => {
 
+  const classes = useStyles()
   const bookmarks = useSelector(store => store.bookmarks)
   const category = useSelector(store => store.category)
 
@@ -19,9 +21,9 @@ const Bookmarks = () => {
 
   return(
     <div>
-      <Container>
+      <Container className={classes.adjustedTopMargin}>
         <Box m={2}>
-          <Typography variant={'h5'}>
+          <Typography variant={'h6'}>
             {category}
           </Typography>
         </Box>
