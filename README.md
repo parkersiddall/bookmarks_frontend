@@ -1,3 +1,6 @@
+# BOCCONI BRANCH
+This branch is an offshoot of the project. It will simply be a front-end with a seperate theme. On the master branch I'll continue on to build integration with a backend. 
+
 # TODO
 - Add more colors (currently 10) so that there can be more than 10 categories...
 - Hide search bar on small devices
