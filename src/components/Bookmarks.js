@@ -21,7 +21,7 @@ const Bookmarks = () => {
 
   return(
     <div>
-      <Container className={classes.adjustedTopMargin}>
+      <Container className={classes.adjustedMargins}>
         <Box m={2}>
           <Typography variant={'h6'}>
             {category}

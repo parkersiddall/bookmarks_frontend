@@ -4,7 +4,7 @@ const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   topMarginForNavbar: {
-    marginTop: '60px'
+    marginTop: '64px'
   },
   content: {
     flexGrow: 1,

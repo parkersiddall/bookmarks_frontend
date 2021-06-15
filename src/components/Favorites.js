@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
+import useStyles from '../styles/Favorites'
 
 // components
 import BookmarkCard from '../components/BookmarkCard'
@@ -11,6 +12,7 @@ import Typography from '@material-ui/core/Typography'
 
 const Favorites = () => {
 
+  const classes = useStyles()
   const favorites = useSelector(store => store.favorites)
 
   if (favorites.length === 0 ){
@@ -19,7 +21,7 @@ const Favorites = () => {
 
   return(
     <div>
-      <Container>
+      <Container className={classes.adjustedMarginBottom}>
           <Box m={2}>
             <Typography variant={'h6'}>
               Favorites

@@ -10,9 +10,6 @@ const useStyles = makeStyles(() => ({
   },
   categoryIcon: {
       marginLeft: 'auto'
-  },
-  adjustedTopMargin: {
-    marginTop: '30px'
   }
 }))
 

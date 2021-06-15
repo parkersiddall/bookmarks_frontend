@@ -11,18 +11,13 @@ const useStyles = makeStyles((theme) => ({
   customNavBar: {
     background: '#262626'
   },
-  navBarTitle: {
-    fontFamily: 'Georgia, Sans Serif'
-  },
   appBar: {
-    background: '#262626',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
   appBarShift: {
-    background: '#262626',
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
