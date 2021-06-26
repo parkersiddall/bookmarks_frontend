@@ -21,7 +21,7 @@ function App() {
   const classes = useStyles()
   const drawerOpen = useSelector(state => state.drawer)
   const searchTerm = useSelector(state => state.search)
-  const user = null // for testing
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   useEffect(() => {
