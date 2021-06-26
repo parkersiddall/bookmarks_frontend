@@ -12,6 +12,7 @@ import { initializeColorCategorization } from './reducers/colorCategorizationRed
 import Bookmarks from './components/Bookmarks'
 import Favorites from './components/Favorites'
 import LeftDrawer from './components/LeftDrawer'
+import Login from './components/Login'
 import Navbar from './components/Navbar'
 import SearchResults from './components/SearchResults'
 
@@ -20,6 +21,7 @@ function App() {
   const classes = useStyles()
   const drawerOpen = useSelector(state => state.drawer)
   const searchTerm = useSelector(state => state.search)
+  const user = null // for testing
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,6 +33,12 @@ function App() {
   // TODO check to see if this can be done in a more solid way
   const bookmarks = useSelector(state => state.bookmarks)
   dispatch(initializeColorCategorization(bookmarks))
+
+  if (!user) {
+    return(
+      <Login />
+    )
+  }
 
   return (
     <div>

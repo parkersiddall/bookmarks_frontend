@@ -1,9 +1,9 @@
 # TODO
-- Add more colors (currently 10) so that there can be more than 10 categories...
+- User authentication
+- Remove color categorization
 - Hide search bar on small devices
 - Add button to quickly reset filter
 - Styling
-- Backend?
 
 # Getting Started with Create React App
 
