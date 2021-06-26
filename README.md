@@ -1,5 +1,8 @@
 # TODO in order of priority
-- Services to make api calls (fetch bookmarks)
+- Clear state on logout
+- Save favorites with dynamic key that includes username
+  - This is a major security leak that should be corrected
+  - Favorites should be saved with an added key:value in the Mongo document
 - "new bookmark" button 
 - "delete bookmark" button
 - "edit bookmark" button

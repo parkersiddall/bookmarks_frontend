@@ -1,7 +1,9 @@
-import bookmarks from '../config/bookmarks'
+import bookmarksService from '../services/bookmarksService'
 
 export const initializeBookmarks = () => {
   return async dispatch => {
+    const bookmarks = await bookmarksService.getUsersBookmarks()
+
     dispatch({
       type: 'INIT_BOOKMARKS',
       data: bookmarks

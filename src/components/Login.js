@@ -14,7 +14,10 @@ const Login = () => {
     event.preventDefault()
 
     try {
+      // log user in
       const user = await loginService.login({username, password})
+     
+      // save user info (username and token) to local storage
       window.localStorage.setItem(
         'loggedBookmarksUser', JSON.stringify(user)
       )
@@ -24,7 +27,7 @@ const Login = () => {
         data: user
       })
 
-      console.log(user.token)
+      // clear local state for forms
       setUsername('')
       setPassword('')
     } catch (error) {
