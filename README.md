@@ -1,9 +1,12 @@
-# TODO
-- User authentication
+# TODO in order of priority
+- Services to make api calls (fetch bookmarks)
+- "new bookmark" button 
+- "delete bookmark" button
+- "edit bookmark" button
+- Modify cards to include photos
+- Add button to quickly reset filter
 - Remove color categorization
 - Hide search bar on small devices
-- Add button to quickly reset filter
-- Styling
 
 # Getting Started with Create React App
 
