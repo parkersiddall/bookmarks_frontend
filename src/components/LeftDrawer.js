@@ -14,6 +14,7 @@ import BookmarksIcon from '@material-ui/icons/Bookmarks'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
@@ -29,9 +30,18 @@ const LeftDrawer = () => {
   const dispatch = useDispatch()
 
   const categoriesAlphaOrdered = Object
-                                .keys(categorization)
-                                .sort((a, b) => 
-                                  a.toLowerCase() > b.toLowerCase() ? 1 : -1)
+    .keys(categorization)
+    .sort((a, b) => 
+      a.toLowerCase() > b.toLowerCase() ? 1 : -1)
+
+  const handleLogout = () => {
+    console.log('You are now logged out.')
+    window.localStorage.removeItem('loggedBookmarksUser')
+    dispatch({
+      type: 'SET_USER',
+      data: null
+    })
+  }
 
   return(
     <div>
@@ -91,6 +101,15 @@ const LeftDrawer = () => {
                 <DeleteIcon />
               </ListItemIcon>
             <ListItemText primary={'Clear favorites'} />
+          </ListItem>
+          <ListItem
+            button
+            onClick={handleLogout}
+          >
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+            <ListItemText primary={'Logout'} />
           </ListItem>
         </List>
       </Drawer>

@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { initializeFavorites } from './reducers/favoritesReducer'
 import { initializeBookmarks } from './reducers/bookmarksReducer'
 import { initializeColorCategorization } from './reducers/colorCategorizationReducer'
+import { initializeUser } from './reducers/userReducer'
 
 // components
 import Bookmarks from './components/Bookmarks'
@@ -25,6 +26,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(initializeUser())
     dispatch(initializeFavorites())
     dispatch(initializeBookmarks())
     // eslint-disable-next-line
@@ -34,9 +36,13 @@ function App() {
   const bookmarks = useSelector(state => state.bookmarks)
   dispatch(initializeColorCategorization(bookmarks))
 
+
+  // TODO: When the page reload the login form flashes. Needs to be fixed.
   if (!user) {
     return(
-      <Login />
+      <div>
+        <Login />
+      </div>
     )
   }
 

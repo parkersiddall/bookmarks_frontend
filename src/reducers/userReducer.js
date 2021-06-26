@@ -1,19 +1,15 @@
-// import blogsService from '../services/blogs'
-
-/* export const initializeUser = () => {
+export const initializeUser = () => {
   return async dispatch => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBookmarksUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      // setUser(user)
       dispatch({
         type: 'SET_USER',
         data: user
       })
-      blogsService.setToken(user.token)
     }
   }
-} */
+}
 
 const userReducer = (state = null, action) => {
   switch (action.type) {
