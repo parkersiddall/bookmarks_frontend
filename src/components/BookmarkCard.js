@@ -11,6 +11,7 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
 import FavoriteButton from './FavoriteButton'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
@@ -27,6 +28,11 @@ const BookmarkCard = ({ bookmark }) => {
         <div>
             <Card className={classes.customCard} square>
                 <CardActionArea component='a' href={bookmark.url} target='_blank'>
+                    <CardMedia
+                        style={{height: '150px'}}
+                        image={bookmark.redditPost.url}
+                        title={bookmark.redditPost.title}
+                    />
                     <CardContent>
                         <Typography variant='h6'>
                             {bookmark.name}
@@ -37,7 +43,7 @@ const BookmarkCard = ({ bookmark }) => {
                     <FavoriteButton 
                         bookmark={bookmark}
                     />
-                    <Tooltip title={bookmark.description}>
+                    <Tooltip title={bookmark.redditPost.title}>
                         <IconButton aria-label="Info">
                             <InfoIcon />
                         </IconButton>
