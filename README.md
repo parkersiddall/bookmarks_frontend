@@ -3,6 +3,7 @@
 - Save favorites with dynamic key that includes username
   - This is a major security leak that should be corrected
   - Favorites should be saved with an added key:value in the Mongo document
+- Add/Remove favorite button appears based on url - needs to be corrected so that it is based on ID
 - "new bookmark" button 
 - "delete bookmark" button
 - "edit bookmark" button

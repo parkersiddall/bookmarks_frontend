@@ -1,3 +1,5 @@
+import bookmarksService from '../services/bookmarksService'
+
 export const initializeFavorites = (favorites) => {
   return async dispatch => {
     dispatch({
@@ -21,23 +23,18 @@ export const clearFavorites = () => {
 export const addFavorite = (favorite) => {
   return async dispatch => {
 
-    const favoritesInStorage = window.localStorage.getItem('favorites')
-    const favorites = JSON.parse(favoritesInStorage)
-
-    if (favorites){
-      // add new favorite to list, then save it back to storage
-      const newFavorites = favorites.concat(favorite)
-      window.localStorage.setItem('favorites', JSON.stringify(newFavorites))
-    } else {
-      // nothing has been saved in storage yet. Create, populate, save list
-      const emptyList = []
-      const populatedWithFav = emptyList.concat(favorite)
-      window.localStorage.setItem('favorites', JSON.stringify(populatedWithFav))
+    const modification = {
+      isFavorite: true
     }
+
+    const addedFavorite = bookmarksService.modifyBookmark(favorite._id, modification)
+
+    // factor back in the reddit data that is not processed by the API endpoint
+    addedFavorite.redditPost = favorite.redditPost
 
     dispatch({
       type: 'ADD_FAVORITE',
-      data: favorite
+      data: addedFavorite
     })
   }
 }
