@@ -6,7 +6,6 @@ import clsx from 'clsx'
 // reducers
 import { initializeFavorites } from './reducers/favoritesReducer'
 import { initializeBookmarks } from './reducers/bookmarksReducer'
-import { initializeColorCategorization } from './reducers/colorCategorizationReducer'
 import { initializeUser } from './reducers/userReducer'
 
 // components
@@ -31,11 +30,6 @@ function App() {
     dispatch(initializeBookmarks())
     // eslint-disable-next-line
   }, [])
-
-  // TODO check to see if this can be done in a more solid way
-  const bookmarks = useSelector(state => state.bookmarks)
-  dispatch(initializeColorCategorization(bookmarks))
-
 
   // TODO: When the page reload the login form flashes. Needs to be fixed.
   if (!user) {

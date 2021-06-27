@@ -21,7 +21,6 @@ import Typography from '@material-ui/core/Typography'
 const BookmarkCard = ({ bookmark }) => {
 
     const classes = useStyles()
-    const categorization = useSelector(state => state.colorCategorization)
     const dispatch = useDispatch()
 
     return (
@@ -57,7 +56,7 @@ const BookmarkCard = ({ bookmark }) => {
                             aria-label="Category"
                             onClick={() => dispatch(setCategory(bookmark.category))}
                         >
-                            <BookmarkIcon style={{color: `${categorization[bookmark.category]}`}}/>
+                            <BookmarkIcon />
                         </IconButton>
                     </Tooltip>
                 </CardActions>

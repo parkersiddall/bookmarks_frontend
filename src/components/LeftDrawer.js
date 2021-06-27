@@ -25,13 +25,11 @@ import ListItemText from '@material-ui/core/ListItemText'
 const LeftDrawer = () => {
 
   const classes = useStyles()
-  const categorization = useSelector(state => state.colorCategorization)
+  const categories = useSelector(state => state.categorization)
   const drawerOpen = useSelector(state => state.drawer)
   const dispatch = useDispatch()
 
-  const categoriesAlphaOrdered = Object
-    .keys(categorization)
-    .sort((a, b) => 
+  const categoriesAlphaOrdered = categories.sort((a, b) => 
       a.toLowerCase() > b.toLowerCase() ? 1 : -1)
 
   const handleLogout = () => {
@@ -83,9 +81,7 @@ const LeftDrawer = () => {
               onClick={() => dispatch(setCategory(category))}
             >
               <ListItemIcon>
-                <BookmarkIcon
-                  style={{color: `${categorization[category]}`}}
-                />
+                <BookmarkIcon />
               </ListItemIcon>
               <ListItemText primary={category}/>
             </ListItem>

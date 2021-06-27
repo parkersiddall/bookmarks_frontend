@@ -8,7 +8,6 @@
 - "edit bookmark" button
 - Modify cards to include photos
 - Add button to quickly reset filter
-- Remove color categorization
 - Hide search bar on small devices
 
 # Getting Started with Create React App

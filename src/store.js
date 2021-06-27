@@ -6,7 +6,7 @@ import drawerReducer from './reducers/drawerReducer'
 import categoryReducer from './reducers/categoryReducer'
 import userReducer from './reducers/userReducer'
 import searchReducer from './reducers/searchReducer'
-import colorCategorizationReducer from './reducers/colorCategorizationReducer'
+import categorizationReducer from './reducers/categorizationReducer'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
@@ -15,7 +15,7 @@ const reducer = combineReducers({
     drawer: drawerReducer,
     category: categoryReducer,
     search: searchReducer,
-    colorCategorization: colorCategorizationReducer,
+    categorization: categorizationReducer,
     user: userReducer
   })
   

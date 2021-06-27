@@ -1,3 +1,5 @@
+// this reducer manages the selected category, causing the app to filter and show only bookmarks in this category
+
 export const setCategory = (category) => {
   return async dispatch => {
     dispatch({
