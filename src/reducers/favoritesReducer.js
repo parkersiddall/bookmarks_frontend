@@ -27,7 +27,7 @@ export const addFavorite = (favorite) => {
       isFavorite: true
     }
 
-    const addedFavorite = bookmarksService.modifyBookmark(favorite._id, modification)
+    const addedFavorite = await bookmarksService.modifyBookmark(favorite._id, modification)
 
     // factor back in the reddit data that is not processed by the API endpoint
     addedFavorite.redditPost = favorite.redditPost

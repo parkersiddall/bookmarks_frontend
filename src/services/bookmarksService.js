@@ -21,7 +21,6 @@ const modifyBookmark = async (id, modification) => {
   }
 
   const request = await axios.put(baseUrl + `/${id}`, modification, config)
-  console.log(request.data)
   return request.data
 }
 
