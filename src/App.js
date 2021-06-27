@@ -4,7 +4,6 @@ import useStyles from './styles/App'
 import clsx from 'clsx'
 
 // reducers
-import { initializeFavorites } from './reducers/favoritesReducer'
 import { initializeBookmarks } from './reducers/bookmarksReducer'
 import { initializeUser } from './reducers/userReducer'
 
@@ -26,8 +25,7 @@ function App() {
 
   useEffect(() => {
     dispatch(initializeUser())
-    dispatch(initializeFavorites())
-    dispatch(initializeBookmarks())
+    dispatch(initializeBookmarks()) // favorites and categorites initialized within bookmarks reducer
     // eslint-disable-next-line
   }, [])
 

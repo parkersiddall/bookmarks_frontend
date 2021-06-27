@@ -1,14 +1,10 @@
-export const initializeFavorites = () => {
+export const initializeFavorites = (favorites) => {
   return async dispatch => {
-    const favoritesInStorage = window.localStorage.getItem('favorites')
-    if(favoritesInStorage){
-      const favorites = JSON.parse(favoritesInStorage)
-      console.log(favorites)
-      dispatch({
-        type: 'INIT_FAVORITES',
-        data: favorites
-      })
-    }
+    dispatch({
+      type: 'INIT_FAVORITES',
+      data: favorites
+    })
+    
   }
 }
 

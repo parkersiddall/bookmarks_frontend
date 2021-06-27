@@ -1,5 +1,6 @@
 import bookmarksService from '../services/bookmarksService'
 import { initializeCategorization } from './categorizationReducer'
+import { initializeFavorites } from './favoritesReducer'
 
 export const initializeBookmarks = () => {
   return async dispatch => {
@@ -12,6 +13,16 @@ export const initializeBookmarks = () => {
 
     // initialize categories
     dispatch(initializeCategorization(bookmarks))
+
+    // initialize favorites
+    let favorites = []
+    bookmarks.forEach(bookmark => {
+      if (bookmark.isFavorite) {
+        favorites.push(bookmark)
+      }
+    })
+    dispatch(initializeFavorites(favorites))
+
   }
 }
 
