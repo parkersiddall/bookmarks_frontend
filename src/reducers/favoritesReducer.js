@@ -41,16 +41,20 @@ export const addFavorite = (favorite) => {
 
 export const removeFavorite = (favorite) => {
   return async dispatch => {
-    const favoritesInStorage = window.localStorage.getItem('favorites')
-    const favorites = JSON.parse(favoritesInStorage)
 
-    // remove the favorite, save remaining to local storage
-    const updatedFavorites = favorites.filter(fav => fav.url !== favorite.url)
-    window.localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
+    const modification = {
+      isFavorite: false
+    }
+
+    console.log(favorite)
+    const removedFavorite = await bookmarksService.modifyBookmark(favorite._id, modification)
+
+    // factor back in the reddit data that is not processed by the API endpoint
+    removedFavorite.redditPost = favorite.redditPost
 
     dispatch({
       type: 'REMOVE_FAVORITE',
-      data: favorite
+      data: removedFavorite
     })
   }
 }
