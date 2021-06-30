@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   customCard: {
     borderLeft: '5px solid #cdcdcd',
     transition: '.2s',
@@ -10,7 +10,12 @@ const useStyles = makeStyles(() => ({
   },
   categoryIcon: {
       marginLeft: 'auto'
-  }
+  },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(4),
+    right: theme.spacing(4),
+  },
 }))
 
 export default useStyles

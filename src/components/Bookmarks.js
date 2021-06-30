@@ -1,17 +1,42 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
-import useStyles from '../styles/Bookmarks'
+import { useDispatch, useSelector } from 'react-redux'
+import { makeStyles } from '@material-ui/core/styles'
+
+// reducers
+import { openAddBookmark } from '../reducers/addBookmarkReducer'
 
 // components
+import AddBookmarkDialogue from './AddBookmarkDialogue'
+import AddIcon from '@material-ui/icons/Add'
 import BookmarkCard from '../components/BookmarkCard'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
+import Fab from '@material-ui/core/Fab'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
+const useStyles = makeStyles((theme) => ({
+  customCard: {
+    borderLeft: '5px solid #cdcdcd',
+    transition: '.2s',
+    '&:hover': {
+      borderLeft: '5px solid #0c5299'
+    }
+  },
+  categoryIcon: {
+      marginLeft: 'auto'
+  },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(4),
+    right: theme.spacing(4),
+  },
+}))
+
+
 
 const Bookmarks = () => {
-
+  const dispatch = useDispatch()
   const classes = useStyles()
   const bookmarks = useSelector(store => store.bookmarks)
   const category = useSelector(store => store.category)
@@ -36,6 +61,17 @@ const Bookmarks = () => {
             </Grid>
           )}
         </Grid>
+        <Fab
+          color='primary'
+          size='large'
+          className={classes.fab}
+          onClick={() => dispatch(openAddBookmark())}
+          >
+            <AddIcon 
+              fontSize='large'
+            />
+        </Fab>
+        <AddBookmarkDialogue />
       </Container>
     </div>
   )

@@ -1,13 +1,11 @@
 # TODO in order of priority
-- Clear state on logout
-- Save favorites with dynamic key that includes username
-  - This is a major security leak that should be corrected
-  - Favorites should be saved with an added key:value in the Mongo document
-- Add/Remove favorite button appears based on url - needs to be corrected so that it is based on ID
 - "new bookmark" button 
+- Clear state on logout
+- Add/Remove favorite button appears based on url - needs to be corrected so that it is based on ID
+- Styles need to go back into each component. Too many issues with them in seperate modules.
+- Sort out which reddit posts work and dont. Identify images in data returned.
 - "delete bookmark" button
 - "edit bookmark" button
-- Modify cards to include photos
 - Add button to quickly reset filter
 - Hide search bar on small devices
 
