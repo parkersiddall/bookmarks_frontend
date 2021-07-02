@@ -46,7 +46,6 @@ export const removeFavorite = (favorite) => {
       isFavorite: false
     }
 
-    console.log(favorite)
     const removedFavorite = await bookmarksService.modifyBookmark(favorite._id, modification)
 
     // factor back in the reddit data that is not processed by the API endpoint
@@ -69,7 +68,7 @@ const favoritesReducer = (state = [], action) => {
     return state.concat(action.data)
 
   case 'REMOVE_FAVORITE':
-    return state.filter(fav => fav.url !== action.data.url)
+    return state.filter(fav => fav._id !== action.data._id)
 
   case 'CLEAR_FAVORITES':
     return action.data

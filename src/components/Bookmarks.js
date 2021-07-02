@@ -54,7 +54,7 @@ const Bookmarks = () => {
         </Box>
         <Grid container spacing={2}>
           {filtered.map(bookmark => 
-            <Grid key={bookmark.name} item xs={12} sm={4} md={3}>
+            <Grid key={bookmark._id} item xs={12} sm={4} md={3}>
               <BookmarkCard
                 bookmark={bookmark}
               />

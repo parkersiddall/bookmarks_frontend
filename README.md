@@ -1,7 +1,6 @@
 # TODO in order of priority
-- "new bookmark" button 
+- Restyle bookmarks (adding edit and delete options)
 - Clear state on logout
-- Add/Remove favorite button appears based on url - needs to be corrected so that it is based on ID
 - Styles need to go back into each component. Too many issues with them in seperate modules.
 - Sort out which reddit posts work and dont. Identify images in data returned.
 - "delete bookmark" button

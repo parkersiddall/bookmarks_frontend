@@ -29,7 +29,7 @@ const Favorites = () => {
           </Box>
           <Grid container spacing={2}>
             {favorites.map(bookmark => 
-              <Grid key={bookmark.name} item xs={12} sm={4} md={3}>
+              <Grid key={bookmark._id} item xs={12} sm={4} md={3}>
                 <BookmarkCard
                   bookmark={bookmark}
                 />
