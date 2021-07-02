@@ -30,13 +30,6 @@ export const addBookmark = (newBookmark, user) => {
   return async dispatch => {
     try {
       let addedBookmark = await bookmarksService.addBookmark(newBookmark)
-      console.log('ADDING Bookmark, ', addedBookmark)
-
-      // add in reddit picture
-      addedBookmark.redditPost = {
-        url: "https://preview.redd.it/4144hovyop871.jpg?width=640&crop=smart&auto=webp&s=3488b98d761fc4af08897f57a70bd3f8d51ece67",
-        title: "test photo"
-      }
 
       dispatch({
         type: 'ADD_BOOKMARK',
