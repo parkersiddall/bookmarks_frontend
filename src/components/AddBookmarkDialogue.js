@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // reducers
 import { closeAddBookmark } from '../reducers/addBookmarkReducer'
+import { addBookmark } from '../reducers/bookmarksReducer'
 
 // components
 import Autocomplete from '@material-ui/lab/Autocomplete'
@@ -33,69 +34,79 @@ const AddBookmarkDialogue = () => {
     notes
   }
 
-  const handleSubmit = () => {
-    console.log(newBookmark)
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    //console.log(newBookmark)
+    dispatch(addBookmark(newBookmark))
+    dispatch(closeAddBookmark())
   }
 
   return (
     <div>
       <Dialog open={openStatus} onClose={() => dispatch(closeAddBookmark())} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">New Bookmark</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            id="name"
-            label="Name"
-            type="text"
-            fullWidth
-            margin="normal"
-            variant="outlined"
-            onChange={(event) => setName(event.target.value)}
-          />
-          <TextField
-            id="url"
-            label="URL"
-            type="url"
-            fullWidth
-            margin="normal"
-            variant="outlined"
-            onChange={(event) => setUrl(event.target.value)}
-          />
-          <Autocomplete
-              id="category"
-              freeSolo
-              options={categorization.map(category => category)}
-              onChange={(event) => setCategory(event.target.innerHTML)}
-              renderInput={(params) => (
+          <form onSubmit={handleSubmit}>
+            <DialogContent>
+              <TextField
+                id="name"
+                label="Name"
+                type="text"
+                margin="normal"
+                variant="outlined"
+                autoFocus
+                required
+                fullWidth
+                onChange={(event) => setName(event.target.value)}
+              />
+              <TextField
+                id="url"
+                label="URL"
+                type="url"
+                margin="normal"
+                variant="outlined"
+                required
+                fullWidth
+                onChange={(event) => setUrl(event.target.value)}
+              />
+              <Autocomplete
+                  id="category"
+                  options={categorization.map(category => category)}
+                  freeSolo
+                  onChange={(event) => setCategory(event.target.innerHTML)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Category"
+                      margin="normal"
+                      variant="outlined"
+                      required
+                      onChange={(event) => setCategory(event.target.value)}
+                    />
+                  )}
+                />
                 <TextField
-                  {...params}
-                  label="Category"
+                  id="notes"
+                  label="Notes"
+                  type="text"
+                  rows={5}
                   margin="normal"
                   variant="outlined"
-                  onChange={(event) => setCategory(event.target.value)}
+                  fullWidth
+                  multiline
+                  onChange={(event) => setNotes(event.target.value)}
                 />
-              )}
-          />
-          <TextField
-            id="notes"
-            label="Notes"
-            type="text"
-            fullWidth
-            multiline
-            rows={5}
-            margin="normal"
-            variant="outlined"
-            onChange={(event) => setNotes(event.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => dispatch(closeAddBookmark())} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
-            Save
-          </Button>
-        </DialogActions>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => dispatch(closeAddBookmark())} 
+              >
+                Cancel
+              </Button>
+              <Button type="submit" color="primary">
+                Save
+              </Button>
+            </DialogActions>
+          </form>
       </Dialog>
     </div>
   )

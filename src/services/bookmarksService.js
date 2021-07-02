@@ -24,4 +24,12 @@ const modifyBookmark = async (id, modification) => {
   return request.data
 }
 
-export default { getUsersBookmarks, setToken, modifyBookmark }
+const addBookmark = async newBookmark => {
+  const config = {
+    headers: { Authorization: token },
+  }
+  const request = await axios.post(baseUrl, newBookmark, config)
+  return request.data
+}
+
+export default { getUsersBookmarks, setToken, modifyBookmark, addBookmark }
