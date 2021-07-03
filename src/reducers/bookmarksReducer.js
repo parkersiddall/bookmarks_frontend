@@ -42,6 +42,23 @@ export const addBookmark = (newBookmark, user) => {
   }
 }
 
+export const deleteBookmark = (bookmark) => {
+  return async dispatch => {
+    try {
+      await bookmarksService.deleteBookmark(bookmark._id)
+
+      dispatch({
+        type: 'DELETE_BOOKMARK',
+        data: bookmark._id,
+      })
+    } catch (error) {
+      console.log(error)
+      window.alert('Error: ', error)
+        // load a notification
+    }
+  }
+}
+
 const bookmarksReducer = (state = [], action) => {
     switch (action.type) {  
     
@@ -50,6 +67,9 @@ const bookmarksReducer = (state = [], action) => {
 
     case 'ADD_BOOKMARK':
       return state.concat(action.data)
+
+    case 'DELETE_BOOKMARK':
+      return state.filter(bookmark => bookmark._id !== action.data)
       
     default:
       return state

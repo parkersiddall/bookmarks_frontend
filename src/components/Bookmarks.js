@@ -10,6 +10,7 @@ import AddBookmarkDialogue from './AddBookmarkDialogue'
 import AddIcon from '@material-ui/icons/Add'
 import BookmarkCard from '../components/BookmarkCard'
 import Box from '@material-ui/core/Box'
+import ConfirmDeleteDialogue from './ConfirmDeleteDialogue'
 import Container from '@material-ui/core/Container'
 import Fab from '@material-ui/core/Fab'
 import Grid from '@material-ui/core/Grid'
@@ -72,6 +73,7 @@ const Bookmarks = () => {
             />
         </Fab>
         <AddBookmarkDialogue />
+        <ConfirmDeleteDialogue />
       </Container>
     </div>
   )

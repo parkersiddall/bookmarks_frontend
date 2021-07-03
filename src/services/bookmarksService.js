@@ -32,4 +32,18 @@ const addBookmark = async newBookmark => {
   return request.data
 }
 
-export default { getUsersBookmarks, setToken, modifyBookmark, addBookmark }
+const deleteBookmark = async id => {
+  const config = {
+    headers: { Authorization: token },
+  }
+  const request = await axios.delete(baseUrl + `/${id}` , config)
+  return request.data
+}
+
+export default { 
+  getUsersBookmarks, 
+  setToken, 
+  modifyBookmark, 
+  addBookmark, 
+  deleteBookmark
+}

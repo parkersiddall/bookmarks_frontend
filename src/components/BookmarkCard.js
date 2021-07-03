@@ -5,6 +5,7 @@ import clsx from 'clsx'
 
 // reducers
 import { setCategory } from '../reducers/categoryReducer'
+import { openConfirmDelete} from '../reducers/confirmDeleteReducer'
 
 // components
 import Card from '@material-ui/core/Card'
@@ -139,10 +140,11 @@ const BookmarkCard = ({ bookmark }) => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose}>Edit Bookmark</MenuItem>
-                <MenuItem onClick={handleClose} color="secondary">Delete Bookmark</MenuItem>
+                <MenuItem onClick={() => dispatch(openConfirmDelete(bookmark))} color="secondary">Delete Bookmark</MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>Save Photo</MenuItem>
             </Menu>
+
         </div>
     )
 }
