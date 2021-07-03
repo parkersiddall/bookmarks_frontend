@@ -9,6 +9,7 @@ import searchReducer from './reducers/searchReducer'
 import categorizationReducer from './reducers/categorizationReducer'
 import addBookmarkReducer from './reducers/addBookmarkReducer'
 import confirmDeleteReducer from './reducers/confirmDeleteReducer'
+import editBookmarkReducer from './reducers/editBookmarkReducer'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
@@ -20,7 +21,8 @@ const reducer = combineReducers({
     categorization: categorizationReducer,
     user: userReducer,
     addBookmarkDialogueStatus: addBookmarkReducer,
-    confirmDelete: confirmDeleteReducer
+    confirmDelete: confirmDeleteReducer,
+    editBookmarkDialogue: editBookmarkReducer
   })
   
   const store = createStore(

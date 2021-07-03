@@ -12,6 +12,7 @@ import BookmarkCard from '../components/BookmarkCard'
 import Box from '@material-ui/core/Box'
 import ConfirmDeleteDialogue from './ConfirmDeleteDialogue'
 import Container from '@material-ui/core/Container'
+import EditBookmarkDialogue from '../components/EditBookmarkDialogue'
 import Fab from '@material-ui/core/Fab'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -33,8 +34,6 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(4),
   },
 }))
-
-
 
 const Bookmarks = () => {
   const dispatch = useDispatch()
@@ -74,6 +73,7 @@ const Bookmarks = () => {
         </Fab>
         <AddBookmarkDialogue />
         <ConfirmDeleteDialogue />
+        <EditBookmarkDialogue />
       </Container>
     </div>
   )

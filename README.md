@@ -2,7 +2,6 @@
 - Clear state on logout
 - Styles need to go back into each component. Too many issues with them in seperate modules.
 - Sort out which reddit posts work and dont. Identify images in data returned.
-- "delete bookmark" button
 - "edit bookmark" button
 - Add button to quickly reset filter
 - Hide search bar on small devices

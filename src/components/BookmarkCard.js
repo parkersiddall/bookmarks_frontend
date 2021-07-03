@@ -5,7 +5,8 @@ import clsx from 'clsx'
 
 // reducers
 import { setCategory } from '../reducers/categoryReducer'
-import { openConfirmDelete} from '../reducers/confirmDeleteReducer'
+import { openConfirmDelete } from '../reducers/confirmDeleteReducer'
+import { openEditBookmark } from '../reducers/editBookmarkReducer'
 
 // components
 import Card from '@material-ui/core/Card'
@@ -139,7 +140,7 @@ const BookmarkCard = ({ bookmark }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Edit Bookmark</MenuItem>
+                <MenuItem onClick={() => dispatch(openEditBookmark(bookmark))}>Edit Bookmark</MenuItem>
                 <MenuItem onClick={() => dispatch(openConfirmDelete(bookmark))} color="secondary">Delete Bookmark</MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>Save Photo</MenuItem>
