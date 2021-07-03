@@ -1,12 +1,10 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import useStyles from '../styles/BookmarkCard'
+import { useDispatch } from 'react-redux'
 
 // reducers
 import { setCategory } from '../reducers/categoryReducer'
 
 // components
-import BookmarkIcon from '@material-ui/icons/Bookmark'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardActionArea from '@material-ui/core/CardActionArea'
@@ -15,50 +13,70 @@ import CardMedia from '@material-ui/core/CardMedia'
 import FavoriteButton from './FavoriteButton'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import Link from '@material-ui/core/Link'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 
 const BookmarkCard = ({ bookmark }) => {
 
-    const classes = useStyles()
     const dispatch = useDispatch()
 
     return (
         <div>
-            <Card className={classes.customCard} square>
+            <Card>
                 <CardActionArea component='a' href={bookmark.url} target='_blank'>
                     <CardMedia
                         style={{height: '150px'}}
                         image={bookmark.redditPost.url}
                         title={bookmark.redditPost.title}
                     />
-                    <CardContent>
-                        <Typography variant='h6'>
-                            {bookmark.name}
-                        </Typography>
-                    </CardContent>
                 </CardActionArea>
-                <CardActions>
+                <CardContent>
+                    <Typography variant='h6'>
+                        {bookmark.name}
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        <Link 
+                            underline="none"
+                            component="button"
+                            color="primary"
+                            onClick={() => dispatch(setCategory(bookmark.category))}
+                            variant='inherit'>
+                            {bookmark.category}
+                        </Link>
+                    </Typography>
+                </CardContent>
+                <CardActions 
+                    disableSpacing
+                >
+                    <Tooltip title="Show notes">
+                        <IconButton 
+                            aria-label="Info">
+                            <KeyboardArrowDownIcon
+                                fontSize="small"
+                            />
+                        </IconButton>
+                    </Tooltip>
+                    <IconButton 
+                        style={{marginLeft: 'auto'}}
+                        aria-label="Info">
+                        <MoreVertIcon
+                            fontSize='small'
+                        />
+                    </IconButton>
+                    <Tooltip title={bookmark.redditPost.title}>
+                        <IconButton 
+                            aria-label="Info">
+                            <InfoIcon
+                                fontSize="small"
+                            />
+                        </IconButton>
+                    </Tooltip>
                     <FavoriteButton 
                         bookmark={bookmark}
                     />
-                    <Tooltip title={bookmark.redditPost.title}>
-                        <IconButton aria-label="Info">
-                            <InfoIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip 
-                        title={bookmark.category}
-                        style={{marginLeft: 'auto'}}
-                        className={classes.categoryIcon}
-                    >
-                        <IconButton 
-                            aria-label="Category"
-                            onClick={() => dispatch(setCategory(bookmark.category))}
-                        >
-                            <BookmarkIcon />
-                        </IconButton>
-                    </Tooltip>
                 </CardActions>
             </Card>
         </div>

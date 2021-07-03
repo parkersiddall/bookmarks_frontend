@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addFavorite, removeFavorite } from '../reducers/favoritesReducer'
 
 // components
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined'
 import IconButton from '@material-ui/core/IconButton'
+import StarIcon from '@material-ui/icons/Star'
+import StarBorderIcon from '@material-ui/icons/StarBorder'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const FavoriteButton = ({ bookmark }) => {
 
@@ -25,24 +26,33 @@ const FavoriteButton = ({ bookmark }) => {
   if(favUrls.includes(bookmark._id)){
     return (
       <div>
-        <IconButton
-          aria-label="remove favorite"
-          onClick={handleRemoveFavorite}
-        >
-          <FavoriteIcon color='primary' />
-        </IconButton>
+        <Tooltip title="Unpin">
+          <IconButton
+            aria-label="remove favorite"
+            onClick={handleRemoveFavorite}
+          >
+            <StarIcon 
+              color='primary'
+              fontSize='small'
+            />
+          </IconButton>
+        </Tooltip>
       </div>
     )
   }
 
   return (
     <div>
-      <IconButton 
-        aria-label="add favorite"
-        onClick={handleAddFavorite}
-      >
-        <FavoriteBorderOutlinedIcon color='primary' />
-      </IconButton>
+      <Tooltip title="Pin to top">
+        <IconButton 
+          aria-label="add favorite"
+          onClick={handleAddFavorite}
+        >
+          <StarBorderIcon
+            fontSize='small'
+          />
+        </IconButton>
+      </Tooltip>
     </div>
   )
 }
