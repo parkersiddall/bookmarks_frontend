@@ -59,6 +59,43 @@ export const deleteBookmark = (bookmark) => {
   }
 }
 
+export const editBookmark = (redditPost, id, modification) => {
+  return async dispatch => {
+    try {
+      // send modifications to backend
+      const response = await bookmarksService.modifyBookmark(id, modification)
+
+      // add in the existing reddit post
+      response.redditPost = redditPost
+
+      dispatch({
+        type: 'EDIT_BOOKMARK',
+        data: response,
+      })
+
+      // update left drawer categories
+      const bookmarks = await bookmarksService.getUsersBookmarks()
+      dispatch(initializeCategorization(bookmarks))
+
+      // re-initialize favorites
+      let favorites = []
+      bookmarks.forEach(bookmark => {
+        if (bookmark.isFavorite) {
+          favorites.push(bookmark)
+        }
+      })
+      dispatch(initializeFavorites(favorites))
+
+    } catch (error) {
+      console.log(error)
+      window.alert('Error: ', error)
+        // load a notification
+    }
+  }
+}
+
+
+
 const bookmarksReducer = (state = [], action) => {
     switch (action.type) {  
     
@@ -70,6 +107,12 @@ const bookmarksReducer = (state = [], action) => {
 
     case 'DELETE_BOOKMARK':
       return state.filter(bookmark => bookmark._id !== action.data)
+
+    case 'EDIT_BOOKMARK':
+      // TODO: see if it is possible to index into the same position. It currently throws the modification to the end. 
+      const filtered = state.filter(bookmark => bookmark._id !== action.data._id)
+
+      return filtered.concat(action.data)
       
     default:
       return state

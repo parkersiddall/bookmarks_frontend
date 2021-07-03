@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 // reducers
 import { closeEditBookmark } from '../reducers/editBookmarkReducer'
-//import { addBookmark } from '../reducers/bookmarksReducer'
+import { editBookmark } from '../reducers/bookmarksReducer'
 
 // components
 import Autocomplete from '@material-ui/lab/Autocomplete'
@@ -32,7 +32,9 @@ const EditBookmarkDialogue = () => {
       category: document.getElementById('edit_category').value,
       notes: document.getElementById('edit_notes').value
     }
-    //dispatch(addBookmark(adjustedBookmark))
+    dispatch(editBookmark(bookmark.redditPost, bookmark._id, adjustedBookmark))
+    dispatch(closeEditBookmark())
+
   }
 
   return (
