@@ -2,46 +2,37 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 // reducers
-import { closeAddBookmark } from '../reducers/addBookmarkReducer'
-import { addBookmark } from '../reducers/bookmarksReducer'
+import { closeEditBookmark } from '../reducers/editBookmarkReducer'
+//import { addBookmark } from '../reducers/bookmarksReducer'
 
 // components
 import Autocomplete from '@material-ui/lab/Autocomplete'
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
-import { closeEditBookmark } from '../reducers/editBookmarkReducer'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import TextField from '@material-ui/core/TextField'
 
 const EditBookmarkDialogue = () => {
   const dispatch = useDispatch()
 
   // get state from redux
   // get state from redux
+  const categorization = useSelector(state => state.categorization)
   const bookmark = useSelector(state => state.editBookmarkDialogue.bookmark)
   const openStatus = useSelector(state => state.editBookmarkDialogue.openStatus)
-  const categorization = useSelector(state => state.categorization)
 
-  // local states to manage form fields
-  const [name, setName] = useState('')
-  const [url, setUrl] = useState('')
-  const [category, setCategory] = useState('')
-  const [notes, setNotes] = useState('')
-
-  const adjustedBookmark = {
-    name,
-    url,
-    category,
-    notes
-  }
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault()
-    //console.log(newBookmark)
-    dispatch(addBookmark(adjustedBookmark))
-    dispatch(closeAddBookmark())
+    const adjustedBookmark = {
+      name: document.getElementById('edit_name').value,
+      url: document.getElementById('edit_url').value,
+      category: document.getElementById('edit_category').value,
+      notes: document.getElementById('edit_notes').value
+    }
+    //dispatch(addBookmark(adjustedBookmark))
   }
 
   return (
@@ -51,8 +42,8 @@ const EditBookmarkDialogue = () => {
           <form onSubmit={handleSubmit}>
             <DialogContent>
               <TextField
-                value={bookmark.name}
-                id="name"
+                defaultValue={bookmark.name}
+                id="edit_name"
                 label="Name"
                 type="text"
                 margin="normal"
@@ -60,39 +51,34 @@ const EditBookmarkDialogue = () => {
                 autoFocus
                 required
                 fullWidth
-                onChange={(event) => setName(event.target.value)}
               />
               <TextField
-                value={bookmark.url}
-                id="url"
+                defaultValue={bookmark.url}
+                id="edit_url"
                 label="URL"
                 type="url"
                 margin="normal"
                 variant="outlined"
                 required
                 fullWidth
-                onChange={(event) => setUrl(event.target.value)}
               />
               <Autocomplete
-                value={bookmark.category}
-                id="category"
+                defaultValue={bookmark.category}
+                id="edit_category"
                 options={categorization.map(category => category)}
                 freeSolo
-                onChange={(event) => setCategory(event.target.innerHTML)}
                 renderInput={(params) => (
                   <TextField
-                    {...params}
+                    {...params} 
                     label="Category"
                     margin="normal"
                     variant="outlined"
                     required
-                    onChange={(event) => setCategory(event.target.value)}
                   />
                 )}
                 />
                 <TextField
-                  value={bookmark.notes || ''}
-                  id="notes"
+                  id="edit_notes"
                   label="Notes"
                   type="text"
                   rows={5}
@@ -100,7 +86,6 @@ const EditBookmarkDialogue = () => {
                   variant="outlined"
                   fullWidth
                   multiline
-                  onChange={(event) => setNotes(event.target.value)}
                 />
             </DialogContent>
             <DialogActions>
@@ -109,7 +94,11 @@ const EditBookmarkDialogue = () => {
               >
                 Cancel
               </Button>
-              <Button type="submit" color="primary">
+              <Button 
+                onClick={handleSubmit} 
+                type="submit"
+                color="primary"
+              >
                 Save
               </Button>
             </DialogActions>
