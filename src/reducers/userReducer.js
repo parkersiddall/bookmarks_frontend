@@ -1,4 +1,5 @@
 import bookmarksService from '../services/bookmarksService'
+import userService from '../services/userService'
 
 export const initializeUser = () => {
   return async dispatch => {
@@ -10,11 +11,16 @@ export const initializeUser = () => {
 
       // update token variable in bookmarks service
       bookmarksService.setToken(user.token)
+      userService.setToken(user.token)
+
+      // collect data about user
+      const userData = await userService.getUserData(user.token)
       
       dispatch({
         type: 'SET_USER',
-        data: user
+        data: userData
       })
+
     }
   }
 }
