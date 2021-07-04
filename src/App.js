@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useStyles from './styles/App'
 import clsx from 'clsx'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 // reducers
 import { initializeBookmarks } from './reducers/bookmarksReducer'
@@ -29,6 +32,22 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
+  let darkSetting = false
+
+  if (user) {
+    darkSetting = user.prefersDark
+  }
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: darkSetting ? 'dark' : 'light',
+        },
+      }),
+    [darkSetting],
+  );
+
   // TODO: When the page reload the login form flashes. Needs to be fixed.
   if (!user) {
     return(
@@ -40,16 +59,19 @@ function App() {
 
   return (
     <div>
-      <Navbar />
-      <LeftDrawer />
-      <main
-        className={`${clsx(classes.content, {
-          [classes.contentShift]: drawerOpen,
-        })} ${classes.topMarginForNavbar}`}
-      >
-        { searchTerm && <SearchResults />}
-        { !searchTerm && <div><Favorites /><Bookmarks /></div> }
-      </main>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+          <Navbar />
+          <LeftDrawer />
+          <main
+            className={`${clsx(classes.content, {
+              [classes.contentShift]: drawerOpen,
+            })} ${classes.topMarginForNavbar}`}
+          >
+            { searchTerm && <SearchResults />}
+            { !searchTerm && <div><Favorites /><Bookmarks /></div> }
+          </main>
+      </ThemeProvider>
     </div>
   )
 }
