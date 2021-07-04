@@ -14,16 +14,16 @@ const getUserData = () => {
   const request = axios.get(baseUrl + '/me', config)
   return request.then(response => response.data)
 }
-/* 
-const modifyBookmark = async (id, modification) => {
+const editSettings = async (newSettings) => {
   const config = {
     headers: { Authorization: token},
   }
-
-  const request = await axios.put(baseUrl + `/${id}`, modification, config)
+  
+  const request = await axios.put(baseUrl + '/settings', newSettings, config)
   return request.data
 }
 
+/* 
 const addBookmark = async newBookmark => {
   const config = {
     headers: { Authorization: token },
@@ -43,5 +43,6 @@ const deleteBookmark = async id => {
 export default { 
   getUserData, 
   setToken, 
+  editSettings
 
 }

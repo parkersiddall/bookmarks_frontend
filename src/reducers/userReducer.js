@@ -25,6 +25,17 @@ export const initializeUser = () => {
   }
 }
 
+export const updateUserSettings = (newSettings) => {
+  return async dispatch => {
+    const updatedSettings = await userService.editSettings(newSettings)
+    
+    dispatch({
+      type: 'SET_USER',
+      data: updatedSettings
+    })
+  }
+}
+
 const userReducer = (state = null, action) => {
   switch (action.type) {
   case 'SET_USER':

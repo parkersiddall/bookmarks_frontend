@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // reducers
 import { toggleSettingsMenu } from '../reducers/settingsReducer'
+import { updateUserSettings } from '../reducers/userReducer'
+import { initializeBookmarks } from '../reducers/bookmarksReducer'
 
 // components
 import Button from '@material-ui/core/Button'
@@ -21,11 +23,20 @@ const SettingsDialogue = () => {
   // get state from redux
   const openStatus = useSelector(state => state.settings)
   const user = useSelector(state => state.user)
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log('submitted')
+    const subreddit = document.getElementById('edit_subreddit').value
+
+    // run a browser side check to be sure subreddit is valid
+
+    const updatedSettings = {
+      subreddit: subreddit,
+    }
+    
     dispatch(toggleSettingsMenu())
+    await dispatch(updateUserSettings(updatedSettings))
+    await dispatch(initializeBookmarks())
   }
 
   return (
@@ -39,7 +50,7 @@ const SettingsDialogue = () => {
               </DialogContentText>
               <TextField
                 defaultValue={user.subreddit}
-                id="edit_subbredit"
+                id="edit_subreddit"
                 label="Subreddit"
                 type="text"
                 margin="normal"
