@@ -39,6 +39,10 @@ export const addBookmark = (newBookmark, user) => {
       window.alert('Error: ', error)
         // load a notification
     }
+
+    // add category to left drawer
+    const bookmarks = await bookmarksService.getUsersBookmarks()
+    dispatch(initializeCategorization(bookmarks))
   }
 }
 
@@ -52,10 +56,13 @@ export const deleteBookmark = (bookmark) => {
         data: bookmark._id,
       })
     } catch (error) {
-      console.log(error)
       window.alert('Error: ', error)
         // load a notification
     }
+
+    // add category to left drawer
+    const bookmarks = await bookmarksService.getUsersBookmarks()
+    dispatch(initializeCategorization(bookmarks))
   }
 }
 
