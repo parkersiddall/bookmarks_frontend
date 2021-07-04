@@ -9,18 +9,20 @@ import { setCategory } from '../reducers/categoryReducer'
 import { clearFavorites } from '../reducers/favoritesReducer'
 
 // components
-import BookmarkIcon from '@material-ui/icons/Bookmark'
 import BookmarksIcon from '@material-ui/icons/Bookmarks'
+import CameraAltIcon from '@material-ui/icons/CameraAlt'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import FolderIcon from '@material-ui/icons/Folder'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
+import SettingsIcon from '@material-ui/icons/Settings'
 
 const LeftDrawer = () => {
 
@@ -81,7 +83,7 @@ const LeftDrawer = () => {
               onClick={() => dispatch(setCategory(category))}
             >
               <ListItemIcon>
-                <BookmarkIcon />
+                <FolderIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText primary={category}/>
             </ListItem>
@@ -96,8 +98,29 @@ const LeftDrawer = () => {
               <ListItemIcon>
                 <DeleteIcon />
               </ListItemIcon>
-            <ListItemText primary={'Clear favorites'} />
+            <ListItemText primary={'Clear Pinned'} />
           </ListItem>
+
+          <ListItem
+            button
+            onClick={() => console.log('Saved Photos')}
+          >
+              <ListItemIcon>
+                <CameraAltIcon />
+              </ListItemIcon>
+            <ListItemText primary={'Saved Photos'} />
+          </ListItem>
+
+          <ListItem
+            button
+            onClick={() => console.log('Settings')}
+          >
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+            <ListItemText primary={'Settings'} />
+          </ListItem>
+
           <ListItem
             button
             onClick={handleLogout}
