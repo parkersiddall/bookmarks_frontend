@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { changeDrawerStatus } from '../reducers/drawerReducer'
 import { setCategory } from '../reducers/categoryReducer'
 import { clearFavorites } from '../reducers/favoritesReducer'
+import { toggleSettingsMenu } from '../reducers/settingsReducer'
 
 // components
 import BookmarksIcon from '@material-ui/icons/Bookmarks'
@@ -23,6 +24,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import SettingsIcon from '@material-ui/icons/Settings'
+import SettingsDialogue from '../components/SettingsDialogue'
 
 const LeftDrawer = () => {
 
@@ -113,7 +115,7 @@ const LeftDrawer = () => {
 
           <ListItem
             button
-            onClick={() => console.log('Settings')}
+            onClick={() => dispatch(toggleSettingsMenu())}
           >
               <ListItemIcon>
                 <SettingsIcon />
@@ -132,6 +134,7 @@ const LeftDrawer = () => {
           </ListItem>
         </List>
       </Drawer>
+      <SettingsDialogue />
     </div>
   )
 }
