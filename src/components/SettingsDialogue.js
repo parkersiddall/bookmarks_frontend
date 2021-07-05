@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { checkSubreddit } from '../utils/subredditChecker'
 
 // reducers
 import { toggleSettingsMenu } from '../reducers/settingsReducer'
@@ -40,15 +41,26 @@ const SettingsDialogue = () => {
     const subreddit = document.getElementById('edit_subreddit').value
 
     // run a browser side check to be sure subreddit is valid
-
-    const updatedSettings = {
-      subreddit: subreddit,
-      prefersDark: theme
+    try {
+      const subredditApproved = await checkSubreddit(subreddit)
+      console.log(subredditApproved)
+  
+      if (subredditApproved) {
+        const updatedSettings = {
+          subreddit: subreddit,
+          prefersDark: theme
+        }
+        
+        dispatch(toggleSettingsMenu())
+        await dispatch(updateUserSettings(updatedSettings))
+        await dispatch(initializeBookmarks())
+  
+      } else {
+        window.alert("Subreddit does not contain enough photos. Please choose another.")
+      }
+    } catch (error) {
+      window.alert("Subreddit not found. Please choose another.")
     }
-    
-    dispatch(toggleSettingsMenu())
-    await dispatch(updateUserSettings(updatedSettings))
-    await dispatch(initializeBookmarks())
   }
 
   return (
