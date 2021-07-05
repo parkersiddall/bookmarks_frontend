@@ -32,6 +32,7 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
+  // manage dark mode
   let darkSetting = false
 
   if (user) {

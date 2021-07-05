@@ -14,7 +14,11 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import FormHelperText from '@material-ui/core/FormHelperText'
+import FormControl from '@material-ui/core/FormControl'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
 import TextField from '@material-ui/core/TextField'
 
 const SettingsDialogue = () => {
@@ -24,6 +28,13 @@ const SettingsDialogue = () => {
   const openStatus = useSelector(state => state.settings)
   const user = useSelector(state => state.user)
 
+  // local state for theme selector
+  const [theme, setTheme] = React.useState(user.prefersDark);
+
+  const handleChange = (event) => {
+    setTheme(event.target.value);
+  };
+  
   const handleSubmit = async (event) => {
     event.preventDefault()
     const subreddit = document.getElementById('edit_subreddit').value
@@ -32,6 +43,7 @@ const SettingsDialogue = () => {
 
     const updatedSettings = {
       subreddit: subreddit,
+      prefersDark: theme
     }
     
     dispatch(toggleSettingsMenu())
@@ -61,7 +73,25 @@ const SettingsDialogue = () => {
                   startAdornment: <InputAdornment position="start">r/</InputAdornment>,
                 }}
               />
-              <FormHelperText id="standard-weight-helper-text">Subreddits with plenty of pictures work best.</FormHelperText>
+              <FormControl 
+                margin="normal" 
+                variant="outlined" 
+                fullWidth
+              >
+                <InputLabel id="theme">Theme</InputLabel>
+                <Select
+                  id="theme_selector"
+                  defaultValue={user.prefersDark ? "Light" : "Dark"}
+                  labelId="theme"
+                  label="Theme"
+                  
+                  value={theme}
+                  onChange={handleChange}
+                >
+                  <MenuItem value={false}>Light</MenuItem>
+                  <MenuItem value={true}>Dark</MenuItem>
+                </Select>
+              </FormControl>
             </DialogContent>
             <DialogActions>
               <Button
