@@ -23,6 +23,15 @@ const editSettings = async (newSettings) => {
   return request.data
 }
 
+const toggleSavePhoto = async (photo) => {
+  const config = {
+    headers: { Authorization: token},
+  }
+  
+  const request = await axios.put(baseUrl + '/savedPhotos', photo, config)
+  return request.data
+}
+
 /* 
 const addBookmark = async newBookmark => {
   const config = {
@@ -43,6 +52,7 @@ const deleteBookmark = async id => {
 export default { 
   getUserData, 
   setToken, 
-  editSettings
+  editSettings,
+  toggleSavePhoto
 
 }

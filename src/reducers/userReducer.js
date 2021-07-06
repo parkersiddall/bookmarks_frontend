@@ -36,6 +36,17 @@ export const updateUserSettings = (newSettings) => {
   }
 }
 
+export const addOrRemoveSavedPhoto = (photo) => {
+  return async dispatch => {
+    const updatedUser = await userService.toggleSavePhoto(photo)
+    
+    dispatch({
+      type: 'SET_USER',
+      data: updatedUser
+    })
+  }
+}
+
 const userReducer = (state = null, action) => {
   switch (action.type) {
   case 'SET_USER':

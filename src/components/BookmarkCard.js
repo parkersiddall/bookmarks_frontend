@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 
@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { setCategory } from '../reducers/categoryReducer'
 import { openConfirmDelete } from '../reducers/confirmDeleteReducer'
 import { openEditBookmark } from '../reducers/editBookmarkReducer'
+import { addOrRemoveSavedPhoto } from '../reducers/userReducer'
 
 // components
 import Card from '@material-ui/core/Card'
@@ -42,11 +43,14 @@ const useStyles = makeStyles((theme) => ({
 const BookmarkCard = ({ bookmark }) => {
 
     const classes = useStyles()
+    const dispatch = useDispatch()
+
+    // pull from redux
+    const user = useSelector(state => state.user)
 
     // local state to manage collapse and menu
     const [expanded, setExpanded] = useState(false)
     const [anchorEl, setAnchorEl] = React.useState(null)
-    const dispatch = useDispatch()
 
     // handlers for collapse and menu
     const handleExpandClick = () => {
@@ -60,6 +64,36 @@ const BookmarkCard = ({ bookmark }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    // handle save/unsave photo
+    const handleSave = async () => {
+        const photo = {
+            url: bookmark.redditPost.url,
+            name: bookmark.redditPost.title
+        }
+
+        try {
+            dispatch(addOrRemoveSavedPhoto(photo))
+         
+        } catch (error){
+            console.log(error)
+            window.alert('Error saving or unsaving this post.')
+        }
+    }
+
+    // render text inside the save photo button
+    const dynamicSaveButtonText = () => {
+        if (user.savedPhotos === undefined){
+            console.log('no savedPhotos')
+            return 'Save Photo'
+        }
+        const photoUrls = user.savedPhotos.map((photo) => photo.url)
+        if (photoUrls.includes(bookmark.redditPost.url)) {
+            return 'Unsave Photo'
+        } else {
+            return 'Save Photo'
+        }
+    }
 
     return (
         <div>
@@ -143,7 +177,7 @@ const BookmarkCard = ({ bookmark }) => {
                 <MenuItem onClick={() => dispatch(openEditBookmark(bookmark))}>Edit Bookmark</MenuItem>
                 <MenuItem onClick={() => dispatch(openConfirmDelete(bookmark))} color="secondary">Delete Bookmark</MenuItem>
                 <Divider />
-                <MenuItem onClick={handleClose}>Save Photo</MenuItem>
+                <MenuItem onClick={() => handleSave()}>{dynamicSaveButtonText()}</MenuItem>
             </Menu>
 
         </div>
