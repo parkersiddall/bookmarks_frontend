@@ -8,6 +8,7 @@ import { changeDrawerStatus } from '../reducers/drawerReducer'
 import { setCategory } from '../reducers/categoryReducer'
 import { clearFavorites } from '../reducers/favoritesReducer'
 import { toggleSettingsMenu } from '../reducers/settingsReducer'
+import { toggleSavedPhotos } from '../reducers/savedPhotosReducer'
 
 // components
 import BookmarksIcon from '@material-ui/icons/Bookmarks'
@@ -23,6 +24,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
+import SavedBookmarksDialogue from './SavedPhotosDialogue'
 import SettingsIcon from '@material-ui/icons/Settings'
 import SettingsDialogue from '../components/SettingsDialogue'
 
@@ -105,7 +107,7 @@ const LeftDrawer = () => {
 
           <ListItem
             button
-            onClick={() => console.log('Saved Photos')}
+            onClick={() => dispatch(toggleSavedPhotos())}
           >
               <ListItemIcon>
                 <CameraAltIcon />
@@ -135,6 +137,7 @@ const LeftDrawer = () => {
         </List>
       </Drawer>
       <SettingsDialogue />
+      <SavedBookmarksDialogue />
     </div>
   )
 }

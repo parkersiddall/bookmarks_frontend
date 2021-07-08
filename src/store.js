@@ -11,6 +11,7 @@ import addBookmarkReducer from './reducers/addBookmarkReducer'
 import confirmDeleteReducer from './reducers/confirmDeleteReducer'
 import editBookmarkReducer from './reducers/editBookmarkReducer'
 import settingsReducer from './reducers/settingsReducer'
+import savedPhotosReducer from './reducers/savedPhotosReducer'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
@@ -24,7 +25,8 @@ const reducer = combineReducers({
     addBookmarkDialogueStatus: addBookmarkReducer,
     confirmDelete: confirmDeleteReducer,
     editBookmarkDialogue: editBookmarkReducer,
-    settings: settingsReducer
+    settings: settingsReducer,
+    savedPhotosDialogueStatus: savedPhotosReducer 
   })
   
   const store = createStore(
