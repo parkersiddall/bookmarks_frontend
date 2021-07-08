@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 // services
 import loginService from '../services/login'
+import { initializeUser } from '../reducers/userReducer'
 
 // components
 import Box from '@material-ui/core/Box'
@@ -64,10 +65,7 @@ const Login = () => {
         'loggedBookmarksUser', JSON.stringify(user)
       )
       // call dispatch
-      dispatch({
-        type: 'SET_USER',
-        data: user
-      })
+      dispatch(initializeUser())
 
       // clear local state for forms
       setUsername('')

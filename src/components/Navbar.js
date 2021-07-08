@@ -48,6 +48,7 @@ const Navbar = () => {
               <SearchIcon />
             </div>
             <InputBase
+              autoFocus
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
