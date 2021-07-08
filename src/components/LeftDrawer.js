@@ -33,6 +33,7 @@ const LeftDrawer = () => {
   const classes = useStyles()
   const categories = useSelector(state => state.categorization)
   const drawerOpen = useSelector(state => state.drawer)
+  const favorites = useSelector(state => state.favorites)
   const dispatch = useDispatch()
 
   const categoriesAlphaOrdered = categories.sort((a, b) => 
@@ -97,7 +98,7 @@ const LeftDrawer = () => {
         <List>
           <ListItem
             button
-            onClick={() => dispatch(clearFavorites())}
+            onClick={() => dispatch(clearFavorites(favorites))}
           >
               <ListItemIcon>
                 <DeleteIcon />

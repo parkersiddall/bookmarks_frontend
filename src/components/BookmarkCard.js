@@ -100,7 +100,7 @@ const BookmarkCard = ({ bookmark }) => {
             <Card>
                 <CardActionArea component='a' href={bookmark.url} target='_blank'>
                     <CardMedia
-                        style={{height: '150px'}}
+                        style={{height: '200px'}}
                         image={bookmark.redditPost.url}
                         title={bookmark.redditPost.title}
                     />

@@ -10,12 +10,24 @@ export const initializeFavorites = (favorites) => {
   }
 }
 
-export const clearFavorites = () => {
+export const clearFavorites = (favorites) => {
+
+  // service calls to remove all favorites
+  const clearedFavs = favorites.map(async fav => {
+
+    let modification = {
+      isFavorite: false
+    }
+    
+    const updated = await bookmarksService.modifyBookmark(fav._id, modification)
+    
+    return updated
+  })
+
   return async dispatch => {
-    window.localStorage.removeItem('favorites')
     dispatch({
       type: 'CLEAR_FAVORITES',
-      data: []
+      data: null
     })
   }
 }
@@ -71,7 +83,7 @@ const favoritesReducer = (state = [], action) => {
     return state.filter(fav => fav._id !== action.data._id)
 
   case 'CLEAR_FAVORITES':
-    return action.data
+    return []
 
   default:
     return state

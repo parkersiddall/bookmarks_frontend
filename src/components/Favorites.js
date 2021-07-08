@@ -24,7 +24,7 @@ const Favorites = () => {
       <Container className={classes.adjustedMarginBottom}>
           <Box m={2}>
             <Typography variant={'h6'}>
-              Favorites
+              Pinned
             </Typography>
           </Box>
           <Grid container spacing={2}>
