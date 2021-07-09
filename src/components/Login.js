@@ -1,3 +1,5 @@
+// this component toggles between the login and register forms
+
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
@@ -30,8 +32,7 @@ const useStyles = makeStyles((theme) => ({
     right: '0px',
     height: '100vh',
     width: '400px',
-    background: 'white',
-    boxShadow: "-10px 0px 100px black"
+    background: 'white'
   },
   pageLeftContainer: {
     position: 'absolute',
@@ -49,9 +50,30 @@ const Login = () => {
 
   const classes = useStyles()
 
+  // local states for forms
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [registerUsername, setRegisterUsername] = useState('')
+  const [registerPassword, setRegisterPassword] = useState('')
+  const [registerConfirmPassword, setRegisterConfirmPassword] = useState('')
+
+  // local states to show visibility of forms
+  const [loginDisplay, setLoginDisplay] = useState('block')
+  const [registerDisplay, setRegisterDisplay] = useState('none')
+
   const dispatch = useDispatch()
+
+  const toggleForms = () => {
+    if (loginDisplay === 'block') {
+      setLoginDisplay('none')
+      setRegisterDisplay('block')
+    }
+
+    if (loginDisplay === 'none') {
+      setLoginDisplay('block')
+      setRegisterDisplay('none')
+    }
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -75,6 +97,43 @@ const Login = () => {
     }
   }
 
+  const handleRegister = async (event) => {
+    event.preventDefault()
+
+    if (registerPassword !== registerConfirmPassword) {
+      window.alert('Passwords do not match.')
+      return null
+    } 
+
+    const newUser = {
+      username: registerUsername,
+      password: registerPassword
+    }
+
+    try {
+      // register user
+      const postedNewUser = await loginService.register(newUser)
+      console.log(postedNewUser)
+      
+      // log user in
+      setUsername(registerUsername)
+      setPassword(registerPassword)
+      const fakeEvent = new Event('Just to trick the login form function')
+      handleLogin(fakeEvent)
+
+      // reset states
+      toggleForms()
+      setUsername('')
+      setPassword('')
+      setRegisterUsername('')
+      setRegisterPassword('')
+      setRegisterConfirmPassword('')
+
+    } catch (error) {
+      window.alert(error)
+    }
+  }
+
   return(
     <div >
       <div className={classes.pageLeftContainer}>
@@ -90,7 +149,7 @@ const Login = () => {
             </Typography>
           </Box>
           <br/>
-          <Box mt={5} mb={2}>
+          <Box display={loginDisplay} mt={5} mb={2}>
             <Typography variant={'h5'}>
               <b>Log in to your account</b>
             </Typography>
@@ -133,15 +192,79 @@ const Login = () => {
               </Button>
             </form>
           </Box>
+          <Box display={registerDisplay} mt={5} mb={2}>
+            <Typography variant={'h5'}>
+              <b>Create an account</b>
+            </Typography>
+            <br/>
+            <form onSubmit={handleRegister}>
+              <TextField
+                label={'Username'}
+                id={'register_username'}
+                type={'text'}
+                value={registerUsername}
+                name={'register_username'}
+                margin={'dense'}
+                variant={'outlined'}
+                fullWidth
+                required
+                onChange={({ target }) => setRegisterUsername(target.value)}
+              />
+              <TextField 
+                label={'Password'}
+                id={'register_password'}
+                type={'password'}
+                value={registerPassword}
+                name={'register_password'}
+                margin={'dense'}
+                variant={'outlined'}
+                fullWidth
+                required
+                onChange = {({ target }) => setRegisterPassword(target.value)}
+              />
+              <TextField 
+                label={'Confirm password'}
+                id={'confirm_password'}
+                type={'password'}
+                value={registerConfirmPassword}
+                name={'password'}
+                margin={'dense'}
+                variant={'outlined'}
+                fullWidth
+                required
+                onChange = {({ target }) => setRegisterConfirmPassword(target.value)}
+              />
+              <Box m={1}></Box>
+              <Button
+                id='login-button'
+                color='primary'
+                type='submit'
+                margin={'dense'}
+                variant={'contained'}
+                fullWidth
+              >
+                Register
+              </Button>
+            </form>
+
+          </Box>
           <Divider />
           <Box mt={2}>
             <Button
-                  id='sign-up-button'
-                  fullWidth
+              onClick={() => toggleForms()}
+              id='sign-up-button'
+              variant={'contained'}
+              fullWidth
             >
-              Create an Account
-            </Button>
+              {
+                loginDisplay === 'block' && 'Create an Account'
+              }
+              {
+                loginDisplay === 'none' && 'Cancel'
+              }
 
+              
+            </Button>
           </Box>
         </Container>
       </div>

@@ -1,10 +1,10 @@
 # TODO in order of priority
-- See if photos can use smaller dimensions
-- Change user settings
+- Refactor registration form into seperate component
+- Rename login.js service file
 - Clear state on logout
 - Styles need to go back into each component. Too many issues with them in seperate modules.
 - Add button to quickly reset filter
-- Hide search bar on small devices
+
 
 # Getting Started with Create React App
 
