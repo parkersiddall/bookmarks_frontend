@@ -7,7 +7,7 @@ export const changeDrawerStatus = (status) => {
   }
 }
 
-const drawerReducer = (state = false, action) => {
+const drawerReducer = (state = true, action) => {
   switch (action.type) { 
   
   case 'CHANGE_STATUS':
