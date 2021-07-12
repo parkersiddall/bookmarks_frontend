@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(4),
     right: theme.spacing(4),
   },
+  emptyText: {
+    marginTop: '40vh',
+    textAlign: 'center'
+  }
 }))
 
 const Bookmarks = () => {
@@ -43,6 +47,32 @@ const Bookmarks = () => {
 
   // filter bookmarks based on category
   const filtered = category === 'All' ? bookmarks : bookmarks.filter(bookmark => bookmark.category === category)
+
+  if (bookmarks.length === 0) {
+    return(
+      <div>
+        <div className={classes.emptyText}>
+          <Typography variant='h6'>
+            Nothing here yet!
+          </Typography>
+          <Typography variant='subtitle1'>
+            Add some bookmarks to get started
+          </Typography>
+        </div>
+        <Fab
+          color='primary'
+          size='large'
+          className={classes.fab}
+          onClick={() => dispatch(openAddBookmark())}
+          >
+            <AddIcon 
+              fontSize='large'
+            />
+        </Fab>
+        <AddBookmarkDialogue />
+      </div>
+    )
+  }
 
   return(
     <div>
