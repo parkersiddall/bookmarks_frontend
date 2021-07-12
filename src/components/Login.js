@@ -80,7 +80,8 @@ const Login = () => {
 
     try {
       // log user in
-      const user = await loginService.login({username, password})
+      console.log(username, password)
+      const user = await loginService.login({username: username, password: password})
      
       // save user info (username and token) to local storage
       window.localStorage.setItem(
@@ -116,10 +117,17 @@ const Login = () => {
       console.log(postedNewUser)
       
       // log user in
-      setUsername(registerUsername)
-      setPassword(registerPassword)
-      const fakeEvent = new Event('Just to trick the login form function')
-      handleLogin(fakeEvent)
+      const user = await loginService.login({
+        username: newUser.username,
+         password: newUser.password
+        })
+     
+      // save user info (username and token) to local storage
+      window.localStorage.setItem(
+        'loggedBookmarksUser', JSON.stringify(user)
+      )
+      // call dispatch
+      dispatch(initializeUser())
 
       // reset states
       toggleForms()
