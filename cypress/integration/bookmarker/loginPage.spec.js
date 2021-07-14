@@ -5,7 +5,7 @@ describe('Login page displays correctly', function () {
   })
 
   it('Landing page displays title, subtitle, and login form', function () {
-    cy.contains('Bookmarker/')
+    cy.contains('Bookmarks')
     cy.contains('With pretty pictures from your favorite subreddits')
     cy.contains('Log in to your account')
     cy.contains('Login')

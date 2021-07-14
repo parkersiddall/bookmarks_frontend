@@ -150,7 +150,7 @@ const Login = () => {
         <Container>
           <Box my={5}>
             <Typography variant={'h3'} color={'primary'}>
-              Bookmarke<span style={{color: 'black'}}>r/</span>
+              Bookmarks
             </Typography>
             <Typography variant={'subtitle1'}>
               With pretty pictures from your favorite subreddits
