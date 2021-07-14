@@ -102,7 +102,7 @@ const AddBookmarkDialogue = () => {
               >
                 Cancel
               </Button>
-              <Button type="submit" color="primary">
+              <Button id="save_added_bookmark" type="submit" color="primary">
                 Save
               </Button>
             </DialogActions>

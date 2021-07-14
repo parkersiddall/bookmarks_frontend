@@ -42,6 +42,7 @@ const ConfirmDeleteDialogue = () => {
               Cancel
             </Button>
             <Button 
+              className="confirm_delete_class_selector"
               onClick={handleDelete} 
               color="secondary">
               Delete

@@ -92,12 +92,13 @@ const Bookmarks = () => {
           )}
         </Grid>
         <Fab
+          id='add_bookmark_fab' 
           color='primary'
           size='large'
           className={classes.fab}
           onClick={() => dispatch(openAddBookmark())}
           >
-            <AddIcon 
+            <AddIcon
               fontSize='large'
             />
         </Fab>

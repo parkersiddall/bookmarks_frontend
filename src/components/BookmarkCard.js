@@ -97,7 +97,7 @@ const BookmarkCard = ({ bookmark }) => {
 
     return (
         <div>
-            <Card>
+            <Card className={'bookmark_card_class_selector'}>
                 <CardActionArea component='a' href={bookmark.url} target='_blank'>
                     <CardMedia
                         style={{height: '200px'}}
@@ -149,7 +149,9 @@ const BookmarkCard = ({ bookmark }) => {
                     <IconButton 
                         onClick={handleClick}
                         style={{marginLeft: 'auto'}}
-                        aria-label="Menu">
+                        aria-label="Menu"
+                        className="bookmark_menu_class_selector"
+                        >
                         <MoreVertIcon
                             fontSize='small'
                         />
