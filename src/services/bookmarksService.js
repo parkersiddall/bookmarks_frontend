@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/api/bookmarks'
+const baseUrl = '/api/bookmarks'
 
 let token = null
 const setToken = newToken => {

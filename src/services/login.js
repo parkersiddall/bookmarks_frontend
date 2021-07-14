@@ -1,7 +1,7 @@
 // name of file should be renamed to indicate that it also holds the call to register new users
 
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001'
+const baseUrl = ''
 
 const login = async credentials => {
   const response = await axios.post(baseUrl + '/api/login', credentials)
