@@ -101,7 +101,15 @@ export const editBookmark = (redditPost, id, modification) => {
   }
 }
 
-
+// used to clear bookmarks from state on logout
+export const clearBookmarks = () => {
+  return async dispatch => {
+    dispatch({
+      type: 'CLEAR_BOOKMARKS',
+      data: [],
+    })
+  }
+}
 
 const bookmarksReducer = (state = [], action) => {
     switch (action.type) {  
@@ -120,6 +128,10 @@ const bookmarksReducer = (state = [], action) => {
       const filtered = state.filter(bookmark => bookmark._id !== action.data._id)
 
       return filtered.concat(action.data)
+
+    case 'CLEAR_BOOKMARKS':
+
+      return (action.data)
       
     default:
       return state

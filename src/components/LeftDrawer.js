@@ -9,6 +9,8 @@ import { setCategory } from '../reducers/categoryReducer'
 import { clearFavorites } from '../reducers/favoritesReducer'
 import { toggleSettingsMenu } from '../reducers/settingsReducer'
 import { toggleSavedPhotos } from '../reducers/savedPhotosReducer'
+import { clearBookmarks } from '../reducers/bookmarksReducer'
+import { clearCategorization } from '../reducers/categorizationReducer'
 
 // components
 import BookmarksIcon from '@material-ui/icons/Bookmarks'
@@ -62,10 +64,29 @@ const LeftDrawer = () => {
   const handleLogout = () => {
     console.log('You are now logged out.')
     window.localStorage.removeItem('loggedBookmarksUser')
+
+    // Look into using a root reducer to set clear everything
+    // from redux in a cleaner way
+
+    // remove user data from state
     dispatch({
       type: 'SET_USER',
       data: null
     })
+
+    // clear bookmarks and categories from state
+    dispatch(clearBookmarks())
+    dispatch(clearCategorization())
+
+    // clear favorites from state
+    // NOTE: I'm manipulating only the redux state here. Unlike when
+    // clearing favorites from the UI, which also makes API calls to DB
+    dispatch({
+      type: 'CLEAR_FAVORITES',
+      data: []
+    })
+
+    // info for dialogs should also be clears from state
   }
 
   return(

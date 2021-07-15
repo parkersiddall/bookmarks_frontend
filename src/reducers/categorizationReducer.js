@@ -20,10 +20,22 @@ export const initializeCategorization = (bookmarks) => {
   }
 }
 
+export const clearCategorization = () => {
+  return async dispatch => {
+    dispatch({
+      type: 'CLEAR_CATEGORIZATION',
+      data: []
+    })
+  }
+}
+
 const categorization = (state = [], action) => {
   switch (action.type) { 
 
   case 'INIT_CATEGORIZATION':
+    return action.data
+
+  case 'CLEAR_CATEGORIZATION':
     return action.data
 
   default:
