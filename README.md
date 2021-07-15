@@ -1,11 +1,7 @@
-# TODO in order of priority
-- Creating a new account does not automatically log them in, issue with authorization
-- Choosing category does not always set the state
-- Request bodies are shown in logs (even passwords). Fix this.
+# TODO and BUGS
+- Add in spinners that show while the bookmarks are loading. (maybe this will solve the flash)
+- Choosing category in add/edit bookmark form does not always set the state
 - Refactor registration form into seperate component
-- Rename login.js service file
-- Clear state on logout
-- Styles need to go back into each component. Too many issues with them in seperate modules.
 - Add button to quickly reset filter
 
 
