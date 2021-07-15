@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import useStyles from '../styles/Favorites'
+import { makeStyles } from '@material-ui/core/styles'
 
 // components
 import BookmarkCard from '../components/BookmarkCard'
@@ -9,6 +9,11 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
+const useStyles = makeStyles((theme) => ({
+  adjustedMarginBottom: {
+    marginBottom: '50px'
+  }
+}))
 
 const Favorites = () => {
 

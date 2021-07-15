@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import useStyles from './styles/App'
-import clsx from 'clsx'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 // reducers
-import { initializeBookmarks } from './reducers/bookmarksReducer'
 import { initializeUser } from './reducers/userReducer'
 
 // components

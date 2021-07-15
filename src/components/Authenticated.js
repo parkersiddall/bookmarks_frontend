@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import useStyles from '../styles/App'
+import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 // reducers
 import { initializeBookmarks } from '../reducers/bookmarksReducer'
-import { initializeUser } from '../reducers/userReducer'
 
 // components
 import Bookmarks from '../components/Bookmarks'
@@ -16,6 +15,29 @@ import LeftDrawer from '../components/LeftDrawer'
 import Navbar from '../components/Navbar'
 import SearchResults from '../components/SearchResults'
 
+const drawerWidth = 240
+
+const useStyles = makeStyles((theme) => ({
+  topMarginForNavbar: {
+    marginTop: '64px'
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: 0,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: drawerWidth,
+  }
+}))
 
 const Authenticated = () => {
   

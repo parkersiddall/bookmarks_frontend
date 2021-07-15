@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import useStyles from '../styles/LeftDrawer'
+import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 
 // reducers
@@ -27,6 +27,26 @@ import ListItemText from '@material-ui/core/ListItemText'
 import SavedBookmarksDialogue from './SavedPhotosDialogue'
 import SettingsIcon from '@material-ui/icons/Settings'
 import SettingsDialogue from '../components/SettingsDialogue'
+
+const drawerWidth = 240
+
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  }
+}))
 
 const LeftDrawer = () => {
 
