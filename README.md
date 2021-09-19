@@ -10,6 +10,12 @@ Built with React / Redux / and Material UI.
 - Create a root reducer to easily clear redux state on logout.
 - Add button to quickly reset filter.
 
+# Run app in container
+Use the Docker file in order to run the app locally on your computer. The following should get you up and running:
+- `docker build . -t bookmarks_frontend`
+- `docker run -d -p 3000:3000 bookmarks_frontend`
+
+Note: If you are running the frontend in seperately from the backend, you will need to set the FQDN in the .env file. If you are going to have the frontend served from the backend then you can leave the FQDN as an empty string.
 
 # React App Scripts
 
