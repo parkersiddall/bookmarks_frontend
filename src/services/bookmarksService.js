@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/bookmarks'
+const baseUrl = `${process.env.REACT_APP_FQDN}/api/bookmarks`
 
 let token = null
 const setToken = newToken => {
